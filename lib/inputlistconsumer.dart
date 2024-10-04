@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class Inputlistconsumer extends StatelessWidget {
-  const Inputlistconsumer({Key? key}) : super(key: key);
-
+  const Inputlistconsumer({super.key});
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
