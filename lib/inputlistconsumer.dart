@@ -6,17 +6,24 @@ class Inputlistconsumer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Container(
-          decoration: const BoxDecoration(
-            gradient: RadialGradient(
-              colors: [
-                Color.fromARGB(255, 143, 236, 201),
-                Color.fromARGB(255, 54, 212, 152),
-              ],
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        leading: IconButton(
+          icon: Image.asset('Momo_images/back.png'),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+        actions: const [
+          Padding(
+            padding: EdgeInsets.all(16.0),
+            child: Icon(
+              Icons.notifications_none,
+              color: Colors.black,
             ),
           ),
-        ),
+        ],
       ),
     );
   }

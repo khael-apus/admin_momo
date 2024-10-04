@@ -72,11 +72,13 @@ class ConsumerHome extends StatelessWidget {
               padding:
                   const EdgeInsets.symmetric(horizontal: 50.0, vertical: 5.0),
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, '/inputlistconsumer');
+                },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.green,
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 5.0), // Adjusted padding
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 5.0), // Adjusted padding
                 ),
                 child: const Text(
                   '  + Create a New List         ',
