@@ -54,7 +54,7 @@ class ConsumerHome extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 40,
                       fontWeight: FontWeight.bold,
-                      color: Colors.green,
+                      color: Color(0xFF3DBC96),
                     ),
                   ),
                 ],
