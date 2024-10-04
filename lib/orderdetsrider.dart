@@ -5,16 +5,18 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       home: Orderdetsrider(),
     );
   }
 }
 
 class Orderdetsrider extends StatefulWidget {
-  const Orderdetsrider({Key? key}) : super(key: key);
+  const Orderdetsrider({super.key});
 
   @override
   State<Orderdetsrider> createState() => _OrderdetsriderState();
@@ -25,7 +27,7 @@ class _OrderdetsriderState extends State<Orderdetsrider> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Center(
+        title: const Center(
           child: Text(
             'Order Details',
             style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
@@ -45,6 +47,8 @@ class _OrderdetsriderState extends State<Orderdetsrider> {
 }
 
 class OrderDetailsScreen extends StatelessWidget {
+  const OrderDetailsScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -53,25 +57,25 @@ class OrderDetailsScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+            const Text(
               'ORDER FROM',
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 8),
-            Text(
+            const SizedBox(height: 8),
+            const Text(
               'Juan Deck',
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
-            Text('+63 912 345 6789'),
-            Text(
+            const Text('+63 912 345 6789'),
+            const Text(
               'Zone 6, Gumamela Street, Macanhan Carmen, Cagayan de Oro City, Mis. Or., 9000',
             ),
-            SizedBox(height: 8),
-            Text(
+            const SizedBox(height: 8),
+            const Text(
               'Shop: Gaisano',
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Column(
               children: [
                 OrderItem(
@@ -108,26 +112,26 @@ class OrderDetailsScreen extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: 16),
-            Text(
+            const SizedBox(height: 16),
+            const Text(
               'Merchandise Estimated Subtotal                        P 1,000.00',
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
-            Text(
+            const Text(
               'Shipping Subtotal                                                  P 150.00',
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
-            Text(
+            const Text(
               'Transaction Fee                                                     P 15.00',
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 16),
-            Text(
+            const SizedBox(height: 16),
+            const Text(
               'Total Payment:                     P 1,165.00',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 16),
-            Center(
+            const SizedBox(height: 16),
+            const Center(
               child: Text(
                 'Paid with GCash',
                 style: TextStyle(
@@ -136,14 +140,14 @@ class OrderDetailsScreen extends StatelessWidget {
                     color: Colors.black),
               ),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             ElevatedButton(
               onPressed: () {
                 showDialog(
                   context: context,
                   builder: (BuildContext context) {
                     return AlertDialog(
-                      contentPadding: EdgeInsets.all(16),
+                      contentPadding: const EdgeInsets.all(16),
                       content: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
@@ -151,22 +155,22 @@ class OrderDetailsScreen extends StatelessWidget {
                             'Momo_images/check.png',
                             fit: BoxFit.cover,
                           ),
-                          SizedBox(height: 16),
-                          Text(
+                          const SizedBox(height: 16),
+                          const Text(
                             "Customer's payment will be sent into your account.",
                             textAlign: TextAlign.center,
                             style: TextStyle(fontSize: 20),
                           ),
-                          SizedBox(height: 24),
+                          const SizedBox(height: 24),
                           ElevatedButton(
                             onPressed: () {
                               Navigator.pop(context);
                             },
-                            child: Text('Continue'),
                             style: ElevatedButton.styleFrom(
-                              minimumSize: Size(double.infinity, 50),
-                              textStyle: TextStyle(fontSize: 20),
+                              minimumSize: const Size(double.infinity, 50),
+                              textStyle: const TextStyle(fontSize: 20),
                             ),
+                            child: Text('Continue'),
                           ),
                         ],
                       ),
@@ -174,11 +178,11 @@ class OrderDetailsScreen extends StatelessWidget {
                   },
                 );
               },
-              child: Text('Take Order'),
               style: ElevatedButton.styleFrom(
-                minimumSize: Size(double.infinity, 50),
-                textStyle: TextStyle(fontSize: 20),
+                minimumSize: const Size(double.infinity, 50),
+                textStyle: const TextStyle(fontSize: 20),
               ),
+              child: Text('Take Order'),
             ),
           ],
         ),
@@ -194,7 +198,7 @@ class OrderItem extends StatelessWidget {
   final String price;
   final int quantity;
 
-  OrderItem({
+  const OrderItem({super.key, 
     required this.imageUrl,
     required this.name,
     required this.description,
@@ -217,19 +221,19 @@ class OrderItem extends StatelessWidget {
               height: 80,
               fit: BoxFit.cover,
             ),
-            SizedBox(width: 16),
+            const SizedBox(width: 16),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     name,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(height: 4),
+                  const SizedBox(height: 4),
                   Text(description),
                 ],
               ),
@@ -239,12 +243,12 @@ class OrderItem extends StatelessWidget {
               children: [
                 Text(
                   price,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                SizedBox(height: 4),
+                const SizedBox(height: 4),
                 Text('x$quantity'),
               ],
             ),

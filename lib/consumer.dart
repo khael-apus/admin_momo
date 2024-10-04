@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Consumer extends StatelessWidget {
-  const Consumer({Key? key}) : super(key: key);
+  const Consumer({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class Consumer extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               ClipRRect(
-                borderRadius: BorderRadius.only(
+                borderRadius: const BorderRadius.only(
                   bottomLeft: Radius.circular(70),
                   bottomRight: Radius.circular(70),
                 ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Paymentmethodconsumer extends StatefulWidget {
-  const Paymentmethodconsumer({Key? key}) : super(key: key);
+  const Paymentmethodconsumer({super.key});
 
   @override
   State<Paymentmethodconsumer> createState() => _PaymentmethodconsumerState();
@@ -33,19 +33,19 @@ class _PaymentmethodconsumerState extends State<Paymentmethodconsumer> {
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Column(
                   children: [
-                    SizedBox(height: 50),
-                    Text(
+                    const SizedBox(height: 50),
+                    const Text(
                       'Payment Methods',
                       style: TextStyle(
                         fontSize: 30,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    SizedBox(height: 50),
+                    const SizedBox(height: 50),
                     // Cash
                     Container(
                       padding:
-                          EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+                          const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
                       decoration: BoxDecoration(
                         border: Border.all(color: Colors.grey[300]!),
                         borderRadius: BorderRadius.circular(10),
@@ -56,9 +56,9 @@ class _PaymentmethodconsumerState extends State<Paymentmethodconsumer> {
                             'Momo_images/mdi_account-cash.png',
                             height: 25,
                           ),
-                          SizedBox(width: 10),
-                          Text('Cash'),
-                          Spacer(),
+                          const SizedBox(width: 10),
+                          const Text('Cash'),
+                          const Spacer(),
                           Radio(
                             value: 'cash',
                             groupValue: null,
@@ -76,11 +76,11 @@ class _PaymentmethodconsumerState extends State<Paymentmethodconsumer> {
                       ),
                       textAlign: TextAlign.left, // Add this line
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     // Gcash
                     Container(
                       padding:
-                          EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+                          const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
                       decoration: BoxDecoration(
                         border: Border.all(color: Colors.grey[300]!),
                         borderRadius: BorderRadius.circular(10),
@@ -91,9 +91,9 @@ class _PaymentmethodconsumerState extends State<Paymentmethodconsumer> {
                             'Momo_images/gcash.png',
                             height: 25,
                           ),
-                          SizedBox(width: 10),
-                          Text('Gcash'),
-                          Spacer(),
+                          const SizedBox(width: 10),
+                          const Text('Gcash'),
+                          const Spacer(),
                           ElevatedButton(
                             onPressed: () {
                               // Handle Gcash link
@@ -101,24 +101,24 @@ class _PaymentmethodconsumerState extends State<Paymentmethodconsumer> {
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.green,
-                              padding: EdgeInsets.symmetric(
+                              padding: const EdgeInsets.symmetric(
                                   horizontal: 20, vertical: 10),
-                              textStyle: TextStyle(
+                              textStyle: const TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white,
                               ),
                             ),
-                            child: Text('Link'),
+                            child: const Text('Link'),
                           ),
                         ],
                       ),
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     // Google Pay
                     Container(
                       padding:
-                          EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+                          const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
                       decoration: BoxDecoration(
                         border: Border.all(color: Colors.grey[300]!),
                         borderRadius: BorderRadius.circular(10),
@@ -129,9 +129,9 @@ class _PaymentmethodconsumerState extends State<Paymentmethodconsumer> {
                             'Momo_images/Google.png',
                             height: 25,
                           ),
-                          SizedBox(width: 10),
-                          Text('Google Pay'),
-                          Spacer(),
+                          const SizedBox(width: 10),
+                          const Text('Google Pay'),
+                          const Spacer(),
                           ElevatedButton(
                             onPressed: () {
                               // Handle Google Pay link
@@ -139,15 +139,15 @@ class _PaymentmethodconsumerState extends State<Paymentmethodconsumer> {
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.green,
-                              padding: EdgeInsets.symmetric(
+                              padding: const EdgeInsets.symmetric(
                                   horizontal: 20, vertical: 10),
-                              textStyle: TextStyle(
+                              textStyle: const TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white,
                               ),
                             ),
-                            child: Text('Link'),
+                            child: const Text('Link'),
                           ),
                         ],
                       ),

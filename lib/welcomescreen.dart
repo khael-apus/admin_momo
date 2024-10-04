@@ -72,7 +72,7 @@ class Home extends StatelessWidget {
                       Navigator.pushNamed(context, '/user');
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Color.fromARGB(255, 245, 245, 245),
+                      backgroundColor: const Color.fromARGB(255, 245, 245, 245),
                       padding: const EdgeInsets.symmetric(
                           vertical: 10, horizontal: 10),
                     ),

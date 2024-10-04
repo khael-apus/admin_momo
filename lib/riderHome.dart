@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class RiderHome extends StatelessWidget {
-  const RiderHome({Key? key}) : super(key: key);
+  const RiderHome({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -10,8 +10,8 @@ class RiderHome extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
-              padding: const EdgeInsets.all(16.0),
+            const Padding(
+              padding: EdgeInsets.all(16.0),
               child: Text(
                 'Good morning,',
                 style: TextStyle(
@@ -29,8 +29,8 @@ class RiderHome extends StatelessWidget {
                     backgroundColor: Colors.grey[300],
                     child: Image.asset('Momo_images/Account.png'),
                   ),
-                  SizedBox(width: 20),
-                  Text(
+                  const SizedBox(width: 20),
+                  const Text(
                     'Rider 12345',
                     style: TextStyle(
                       fontSize: 40,
@@ -41,14 +41,14 @@ class RiderHome extends StatelessWidget {
                 ],
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(16.0),
+            const Padding(
+              padding: EdgeInsets.all(16.0),
               child: Text(
                 'Are you ready to work? Choose an order below.',
                 style: TextStyle(fontSize: 16),
               ),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             OrderCard(
               orderNumber: '123456',
               date: '25 - May - 2024, 1:00 PM',
@@ -60,7 +60,7 @@ class RiderHome extends StatelessWidget {
                 Navigator.pushNamed(context, '/orderdetsrider');
               },
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             OrderCard(
               orderNumber: '135790',
               date: '25 - May - 2024, 1:00PM',
@@ -72,7 +72,7 @@ class RiderHome extends StatelessWidget {
                 Navigator.pushNamed(context, '/XXXXXXXXXX');
               },
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             OrderCard(
               orderNumber: '246810',
               date: '25 - May - 2024, 1:00 PM',
@@ -84,7 +84,7 @@ class RiderHome extends StatelessWidget {
                 Navigator.pushNamed(context, '/XXXXXXXX');
               },
             ),
-            SizedBox(height: 32),
+            const SizedBox(height: 32),
           ],
         ),
       ),
@@ -130,7 +130,7 @@ class OrderCard extends StatelessWidget {
   final String imagePath;
   final VoidCallback onTap;
 
-  OrderCard({
+  const OrderCard({super.key, 
     required this.orderNumber,
     required this.date,
     required this.estimatedDelivery,
@@ -146,7 +146,7 @@ class OrderCard extends StatelessWidget {
       child: InkWell(
         onTap: onTap,
         child: Container(
-          padding: EdgeInsets.all(16),
+          padding: const EdgeInsets.all(16),
           child: Row(
             children: [
               Image.asset(
@@ -154,40 +154,40 @@ class OrderCard extends StatelessWidget {
                 height: 100,
                 width: 100,
               ),
-              SizedBox(width: 16),
+              const SizedBox(width: 16),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       'Order No. $orderNumber',
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    SizedBox(height: 4),
+                    const SizedBox(height: 4),
                     Text(
-                      '$date',
-                      style: TextStyle(fontSize: 14),
+                      date,
+                      style: const TextStyle(fontSize: 14),
                     ),
-                    SizedBox(height: 4),
+                    const SizedBox(height: 4),
                     Text(
-                      '$estimatedDelivery',
-                      style: TextStyle(
+                      estimatedDelivery,
+                      style: const TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    SizedBox(height: 4),
+                    const SizedBox(height: 4),
                     Text(
-                      '$items',
-                      style: TextStyle(fontSize: 14),
+                      items,
+                      style: const TextStyle(fontSize: 14),
                     ),
-                    SizedBox(height: 4),
+                    const SizedBox(height: 4),
                     Text(
                       'P $price',
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
                         color: Colors.green,

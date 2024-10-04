@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Helpcenterrider extends StatefulWidget {
-  const Helpcenterrider({Key? key}) : super(key: key);
+  const Helpcenterrider({super.key});
 
   @override
   State<Helpcenterrider> createState() => _HelpcenterriderState();
@@ -47,15 +47,15 @@ class _HelpcenterriderState extends State<Helpcenterrider>
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: 50),
-                Text(
+                const SizedBox(height: 50),
+                const Text(
                   '                  Help Center',
                   style: TextStyle(
                     fontSize: 30,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 // Search Bar
                 TextField(
                   decoration: InputDecoration(
@@ -70,10 +70,10 @@ class _HelpcenterriderState extends State<Helpcenterrider>
                     ),
                   ),
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 TabBar(
                   controller: _tabController,
-                  tabs: [
+                  tabs: const [
                     Tab(text: 'FAQ'),
                     Tab(text: 'Contact US'),
                   ],
@@ -97,18 +97,22 @@ class _HelpcenterriderState extends State<Helpcenterrider>
 }
 
 class FAQTabContent extends StatelessWidget {
+  const FAQTabContent({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return const Center(
       child: Text('FAQ content'),
     );
   }
 }
 
 class ContactUsTabContent extends StatelessWidget {
+  const ContactUsTabContent({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return const Center(
       child: Text('Contact US content'),
     );
   }

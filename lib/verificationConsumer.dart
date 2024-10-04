@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class VerificationConsumer extends StatefulWidget {
-  const VerificationConsumer({Key? key}) : super(key: key);
+  const VerificationConsumer({super.key});
 
   @override
   State<VerificationConsumer> createState() => _VerificationConsumerState();
@@ -49,7 +49,7 @@ class _VerificationConsumerState extends State<VerificationConsumer> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Center(
+            const Center(
               child: Text(
                 'Verify Code',
                 style: TextStyle(
@@ -58,8 +58,8 @@ class _VerificationConsumerState extends State<VerificationConsumer> {
                 ),
               ),
             ),
-            SizedBox(height: 50.0),
-            Center(
+            const SizedBox(height: 50.0),
+            const Center(
               child: Text(
                 'Please enter the 4-digit code sent to your email address.',
                 style: TextStyle(
@@ -67,7 +67,7 @@ class _VerificationConsumerState extends State<VerificationConsumer> {
                 ),
               ),
             ),
-            SizedBox(height: 50.0),
+            const SizedBox(height: 50.0),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -75,7 +75,7 @@ class _VerificationConsumerState extends State<VerificationConsumer> {
                   Container(
                     width: 70,
                     height: 70,
-                    margin: EdgeInsets.all(10),
+                    margin: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
                       border: Border.all(
                         color: _errorBorders[i] ? Colors.red : Colors.grey,
@@ -89,11 +89,11 @@ class _VerificationConsumerState extends State<VerificationConsumer> {
                         textAlign: TextAlign.center,
                         maxLength: 1,
                         keyboardType: TextInputType.number,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           border: InputBorder.none,
                           counterText: '',
                         ),
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 24,
                         ),
                         onChanged: (value) {
@@ -122,8 +122,8 @@ class _VerificationConsumerState extends State<VerificationConsumer> {
                   ),
               ],
             ),
-            SizedBox(height: 32.0),
-            Center(
+            const SizedBox(height: 32.0),
+            const Center(
               child: Text(
                 "Didn't receive OTP?",
                 style: TextStyle(
@@ -138,7 +138,7 @@ class _VerificationConsumerState extends State<VerificationConsumer> {
                 onPressed: () {
                   // TODO: Implement resend code logic
                 },
-                child: Text(
+                child: const Text(
                   'Resend Code',
                   style: TextStyle(
                     decoration: TextDecoration.underline,
@@ -146,13 +146,13 @@ class _VerificationConsumerState extends State<VerificationConsumer> {
                 ),
               ),
             ),
-            SizedBox(height: 8.0),
+            const SizedBox(height: 8.0),
             Center(
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.green,
-                  textStyle: TextStyle(fontSize: 30, color: Colors.white),
-                  padding: EdgeInsets.all(16),
+                  textStyle: const TextStyle(fontSize: 30, color: Colors.white),
+                  padding: const EdgeInsets.all(16),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
@@ -160,10 +160,10 @@ class _VerificationConsumerState extends State<VerificationConsumer> {
                 onPressed: () {
                   Navigator.pushNamed(context, '/completeprofileconsumer');
                 },
-                child: Text('Verify'),
+                child: const Text('Verify'),
               ),
             ),
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
           ],
         ),
       ),

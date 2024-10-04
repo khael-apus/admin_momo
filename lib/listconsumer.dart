@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Listconsumer extends StatefulWidget {
-  const Listconsumer({Key? key}) : super(key: key);
+  const Listconsumer({super.key});
 
   @override
   State<Listconsumer> createState() => _ListconsumerState();
@@ -33,10 +33,10 @@ class _ListconsumerState extends State<Listconsumer>
             height: 30,
           ),
         ),
-        title: Text('My Orders'),
+        title: const Text('My Orders'),
         bottom: TabBar(
           controller: _tabController,
-          tabs: [
+          tabs: const [
             Tab(text: 'Ongoing'),
             Tab(text: 'History'),
           ],
@@ -46,7 +46,7 @@ class _ListconsumerState extends State<Listconsumer>
         controller: _tabController,
         children: [
           // Ongoing Orders
-          Center(
+          const Center(
             child: Text('No ongoing orders.'),
           ),
           // Order History
@@ -115,7 +115,7 @@ class OrderCard extends StatelessWidget {
   final String price;
   final String imagePath;
 
-  OrderCard({
+  const OrderCard({super.key, 
     required this.orderNumber,
     required this.date,
     required this.estimatedDelivery,
@@ -133,7 +133,7 @@ class OrderCard extends StatelessWidget {
           Navigator.pushNamed(context, '/XXXXXX');
         },
         child: Container(
-          padding: EdgeInsets.all(16),
+          padding: const EdgeInsets.all(16),
           child: Row(
             children: [
               Image.asset(
@@ -141,40 +141,40 @@ class OrderCard extends StatelessWidget {
                 height: 100,
                 width: 100,
               ),
-              SizedBox(width: 16),
+              const SizedBox(width: 16),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       'Order No. $orderNumber',
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    SizedBox(height: 4),
+                    const SizedBox(height: 4),
                     Text(
-                      '$date',
-                      style: TextStyle(fontSize: 14),
+                      date,
+                      style: const TextStyle(fontSize: 14),
                     ),
-                    SizedBox(height: 4),
+                    const SizedBox(height: 4),
                     Text(
-                      '$estimatedDelivery',
-                      style: TextStyle(
+                      estimatedDelivery,
+                      style: const TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    SizedBox(height: 4),
+                    const SizedBox(height: 4),
                     Text(
-                      '$items',
-                      style: TextStyle(fontSize: 14),
+                      items,
+                      style: const TextStyle(fontSize: 14),
                     ),
-                    SizedBox(height: 4),
+                    const SizedBox(height: 4),
                     Text(
                       'P $price',
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
                         color: Colors.teal,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Editprofilerider extends StatefulWidget {
-  const Editprofilerider({Key? key}) : super(key: key);
+  const Editprofilerider({super.key});
 
   @override
   State<Editprofilerider> createState() => _EditprofileriderState();
@@ -54,8 +54,8 @@ class _EditprofileriderState extends State<Editprofilerider> {
                     ),
                   ),
                   Container(
-                    decoration: BoxDecoration(
-                      color: const Color(0xFF50C26F),
+                    decoration: const BoxDecoration(
+                      color: Color(0xFF50C26F),
                       shape: BoxShape.circle,
                     ),
                     padding: const EdgeInsets.all(5),

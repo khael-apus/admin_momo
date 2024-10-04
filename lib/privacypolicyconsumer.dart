@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Privacypolicyconsumer extends StatefulWidget {
-  const Privacypolicyconsumer({Key? key}) : super(key: key);
+  const Privacypolicyconsumer({super.key});
 
   @override
   State<Privacypolicyconsumer> createState() => _PrivacypolicyconsumerState();
@@ -30,21 +30,21 @@ class _PrivacypolicyconsumerState extends State<Privacypolicyconsumer> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 50),
-            Text(
+            const SizedBox(height: 50),
+            const Text(
               '                  Privacy Policy',
               style: TextStyle(
                 fontSize: 30,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             // Contact Us Link
             GestureDetector(
               onTap: () {
                 // Implement functionality for Contact Us link
               },
-              child: Text(
+              child: const Text(
                 'Contact Us',
                 style: TextStyle(
                   fontSize: 20,
@@ -52,13 +52,13 @@ class _PrivacypolicyconsumerState extends State<Privacypolicyconsumer> {
                 ),
               ),
             ),
-            SizedBox(height: 300),
+            const SizedBox(height: 300),
             // Terms and Conditions Link
             GestureDetector(
               onTap: () {
                 // Implement functionality for Terms and Conditions link
               },
-              child: Text(
+              child: const Text(
                 'Terms and Conditions',
                 style: TextStyle(
                   fontSize: 20,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Riderprofile extends StatefulWidget {
-  const Riderprofile({Key? key}) : super(key: key);
+  const Riderprofile({super.key});
 
   @override
   State<Riderprofile> createState() => _RiderprofileState();
@@ -44,7 +44,7 @@ class _RiderprofileState extends State<Riderprofile> {
                   Container(
                     width: 120,
                     height: 120,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       shape: BoxShape.circle,
                       color: Colors.grey,
                     ),
@@ -56,7 +56,7 @@ class _RiderprofileState extends State<Riderprofile> {
                     child: Container(
                       width: 30,
                       height: 30,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         shape: BoxShape.circle,
                         color: Colors.green,
                       ),

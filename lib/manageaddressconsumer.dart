@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Manageaddressconsumer extends StatefulWidget {
-  const Manageaddressconsumer({Key? key}) : super(key: key);
+  const Manageaddressconsumer({super.key});
 
   @override
   State<Manageaddressconsumer> createState() => _ManageaddressconsumerState();
@@ -33,31 +33,31 @@ class _ManageaddressconsumerState extends State<Manageaddressconsumer> {
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Column(
                   children: [
-                    SizedBox(height: 50),
-                    Text(
+                    const SizedBox(height: 50),
+                    const Text(
                       'Manage Address',
                       style: TextStyle(
                         fontSize: 30,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    SizedBox(height: 50),
+                    const SizedBox(height: 50),
                     // Address 1
                     ListTile(
                       leading: Image.asset('Momo_images/Place Marker.png'),
-                      title: Text('My Home'),
-                      subtitle: Text(
+                      title: const Text('My Home'),
+                      subtitle: const Text(
                           'Macanhan, Carmen, Cagayan de Oro, Misamis Oriental'),
                     ),
                     // Address 2
                     ListTile(
                       leading: Image.asset('Momo_images/Place Marker.png'),
-                      title: Text('Mom\'s Home'),
-                      subtitle: Text(
+                      title: const Text('Mom\'s Home'),
+                      subtitle: const Text(
                           'Singapore, Balulang, Cagayan de Oro, Misamis Oriental'),
                     ),
 
-                    SizedBox(height: 40),
+                    const SizedBox(height: 40),
                     // Add New Address
                     ElevatedButton(
                       onPressed: () {
@@ -65,12 +65,12 @@ class _ManageaddressconsumerState extends State<Manageaddressconsumer> {
                         // Example: Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()));
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Color.fromARGB(255, 88, 218, 189),
-                        padding: EdgeInsets.symmetric(
+                        backgroundColor: const Color.fromARGB(255, 88, 218, 189),
+                        padding: const EdgeInsets.symmetric(
                           horizontal: 100,
                           vertical: 15,
                         ),
-                        textStyle: TextStyle(
+                        textStyle: const TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                         ),
@@ -78,7 +78,7 @@ class _ManageaddressconsumerState extends State<Manageaddressconsumer> {
                           borderRadius: BorderRadius.circular(20),
                         ),
                       ),
-                      child: Text('+ Add New Shipping Address'),
+                      child: const Text('+ Add New Shipping Address'),
                     ),
                   ],
                 ),
@@ -87,7 +87,7 @@ class _ManageaddressconsumerState extends State<Manageaddressconsumer> {
           ),
           // Apply Button
           Container(
-            padding: EdgeInsets.all(5), // Add padding with a green color
+            padding: const EdgeInsets.all(5), // Add padding with a green color
             decoration: BoxDecoration(
               border: Border.all(color: Colors.green, width: 2),
               borderRadius: BorderRadius.circular(20),
@@ -99,17 +99,17 @@ class _ManageaddressconsumerState extends State<Manageaddressconsumer> {
                     context); // This will pop the current screen and return to the previous screen
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Color.fromARGB(255, 76, 175, 150),
-                padding: EdgeInsets.symmetric(
+                backgroundColor: const Color.fromARGB(255, 76, 175, 150),
+                padding: const EdgeInsets.symmetric(
                   horizontal: 220,
                   vertical: 40,
                 ),
-                textStyle: TextStyle(
+                textStyle: const TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              child: Text('Apply'),
+              child: const Text('Apply'),
             ),
           ),
         ],

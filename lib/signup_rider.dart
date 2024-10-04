@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Signup_rider extends StatefulWidget {
-  const Signup_rider({Key? key}) : super(key: key);
+  const Signup_rider({super.key});
 
   @override
   State<Signup_rider> createState() => _Signup_riderState();
@@ -15,8 +15,8 @@ class _Signup_riderState extends State<Signup_rider> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text('Terms & Conditions'),
-          content: Column(
+          title: const Text('Terms & Conditions'),
+          content: const Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
@@ -77,7 +77,7 @@ class _Signup_riderState extends State<Signup_rider> {
                   onPressed: () {
                     Navigator.pop(context);
                   },
-                  child: Text('Cancel'),
+                  child: const Text('Cancel'),
                 ),
                 ElevatedButton(
                   onPressed: () {
@@ -86,7 +86,7 @@ class _Signup_riderState extends State<Signup_rider> {
                     });
                     Navigator.pop(context);
                   },
-                  child: Text('Agree'),
+                  child: const Text('Agree'),
                 ),
               ],
             ),
@@ -118,16 +118,16 @@ class _Signup_riderState extends State<Signup_rider> {
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Column(
             children: [
-              SizedBox(height: 50),
-              Text(
+              const SizedBox(height: 50),
+              const Text(
                 'Create Account',
                 style: TextStyle(
                   fontSize: 30,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(height: 20),
-              Text(
+              const SizedBox(height: 20),
+              const Text(
                 'Fill your information below or register with your social account',
                 textAlign: TextAlign.center,
                 style: TextStyle(
@@ -135,7 +135,7 @@ class _Signup_riderState extends State<Signup_rider> {
                   color: Colors.grey,
                 ),
               ),
-              SizedBox(height: 50),
+              const SizedBox(height: 50),
               // First Name
               TextFormField(
                 decoration: InputDecoration(
@@ -148,7 +148,7 @@ class _Signup_riderState extends State<Signup_rider> {
                   fillColor: Colors.grey[200],
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               // Last Name
               TextFormField(
                 decoration: InputDecoration(
@@ -161,7 +161,7 @@ class _Signup_riderState extends State<Signup_rider> {
                   fillColor: Colors.grey[200],
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               // Email
               TextFormField(
                 decoration: InputDecoration(
@@ -174,7 +174,7 @@ class _Signup_riderState extends State<Signup_rider> {
                   fillColor: Colors.grey[200],
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               // Password
               TextFormField(
                 obscureText: true,
@@ -186,10 +186,10 @@ class _Signup_riderState extends State<Signup_rider> {
                   ),
                   filled: true,
                   fillColor: Colors.grey[200],
-                  suffixIcon: Icon(Icons.visibility_off),
+                  suffixIcon: const Icon(Icons.visibility_off),
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               // Checkbox
               Row(
                 children: [
@@ -203,7 +203,7 @@ class _Signup_riderState extends State<Signup_rider> {
                   ),
                   GestureDetector(
                     onTap: _showTermsAndConditions,
-                    child: Text(
+                    child: const Text(
                       'Agree to Terms & Conditions',
                       style: TextStyle(
                         color: Colors.green,
@@ -212,7 +212,7 @@ class _Signup_riderState extends State<Signup_rider> {
                   ),
                 ],
               ),
-              SizedBox(height: 40),
+              const SizedBox(height: 40),
               // Sign Up Button
               ElevatedButton(
                 onPressed: () {
@@ -220,11 +220,11 @@ class _Signup_riderState extends State<Signup_rider> {
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.green,
-                  padding: EdgeInsets.symmetric(
+                  padding: const EdgeInsets.symmetric(
                     horizontal: 100,
                     vertical: 15,
                   ),
-                  textStyle: TextStyle(
+                  textStyle: const TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
                   ),
@@ -232,17 +232,17 @@ class _Signup_riderState extends State<Signup_rider> {
                     borderRadius: BorderRadius.circular(20),
                   ),
                 ),
-                child: Text('Sign Up'),
+                child: const Text('Sign Up'),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               // Or sign up with
-              Text(
+              const Text(
                 '---------- Or sign up with---------',
                 style: TextStyle(
                   color: Colors.grey,
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               // Social Icons
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -257,7 +257,7 @@ class _Signup_riderState extends State<Signup_rider> {
                       height: 30,
                     ),
                   ),
-                  SizedBox(width: 20),
+                  const SizedBox(width: 20),
                   // Google Icon
                   CircleAvatar(
                     radius: 25,
@@ -270,22 +270,22 @@ class _Signup_riderState extends State<Signup_rider> {
                   ),
                 ],
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
+                  const Text(
                     'Already have an account?',
                     style: TextStyle(
                       color: Colors.grey,
                     ),
                   ),
-                  SizedBox(width: 5),
+                  const SizedBox(width: 5),
                   TextButton(
                     onPressed: () {
                       Navigator.pushNamed(context, '/signin_rider');
                     },
-                    child: Text(
+                    child: const Text(
                       'Sign in',
                       style: TextStyle(
                         color: Colors.green,

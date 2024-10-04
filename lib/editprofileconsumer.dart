@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Editprofileconsumer extends StatefulWidget {
-  const Editprofileconsumer({Key? key}) : super(key: key);
+  const Editprofileconsumer({super.key});
 
   @override
   State<Editprofileconsumer> createState() => _EditprofileconsumerState();
@@ -54,8 +54,8 @@ class _EditprofileconsumerState extends State<Editprofileconsumer> {
                     ),
                   ),
                   Container(
-                    decoration: BoxDecoration(
-                      color: const Color(0xFF50C26F),
+                    decoration: const BoxDecoration(
+                      color: Color(0xFF50C26F),
                       shape: BoxShape.circle,
                     ),
                     padding: const EdgeInsets.all(5),

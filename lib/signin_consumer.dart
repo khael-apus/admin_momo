@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Signin_consumer extends StatefulWidget {
-  const Signin_consumer({Key? key}) : super(key: key);
+  const Signin_consumer({super.key});
 
   @override
   State<Signin_consumer> createState() => _Signin_consumerState();
@@ -30,16 +30,16 @@ class _Signin_consumerState extends State<Signin_consumer> {
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Column(
             children: [
-              SizedBox(height: 50),
-              Text(
+              const SizedBox(height: 50),
+              const Text(
                 'Sign In',
                 style: TextStyle(
                   fontSize: 30,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(height: 20),
-              Text(
+              const SizedBox(height: 20),
+              const Text(
                 'Hi welcome back, youve been missed',
                 textAlign: TextAlign.center,
                 style: TextStyle(
@@ -47,7 +47,7 @@ class _Signin_consumerState extends State<Signin_consumer> {
                   color: Colors.grey,
                 ),
               ),
-              SizedBox(height: 50),
+              const SizedBox(height: 50),
               // First Name
               TextFormField(
                 decoration: InputDecoration(
@@ -60,7 +60,7 @@ class _Signin_consumerState extends State<Signin_consumer> {
                   fillColor: Colors.grey[200],
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               // Last Name
 
               TextFormField(
@@ -73,10 +73,10 @@ class _Signin_consumerState extends State<Signin_consumer> {
                   ),
                   filled: true,
                   fillColor: Colors.grey[200],
-                  suffixIcon: Icon(Icons.visibility_off),
+                  suffixIcon: const Icon(Icons.visibility_off),
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               // Forgot Password
               TextButton(
                 onPressed: () {
@@ -84,16 +84,16 @@ class _Signin_consumerState extends State<Signin_consumer> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => ForgotPasswordScreen()));
+                          builder: (context) => const ForgotPasswordScreen()));
                 },
-                child: Text(
+                child: const Text(
                   'Forgot Password?',
                   style: TextStyle(
                     color: Colors.green,
                   ),
                 ),
               ),
-              SizedBox(height: 40),
+              const SizedBox(height: 40),
               // Sign Up Button
               ElevatedButton(
                 onPressed: () {
@@ -102,11 +102,11 @@ class _Signin_consumerState extends State<Signin_consumer> {
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.green,
-                  padding: EdgeInsets.symmetric(
+                  padding: const EdgeInsets.symmetric(
                     horizontal: 100,
                     vertical: 15,
                   ),
-                  textStyle: TextStyle(
+                  textStyle: const TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
                   ),
@@ -114,17 +114,17 @@ class _Signin_consumerState extends State<Signin_consumer> {
                     borderRadius: BorderRadius.circular(20),
                   ),
                 ),
-                child: Text('Sign In'),
+                child: const Text('Sign In'),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               // Or sign up with
-              Text(
+              const Text(
                 '---------- Or sign in with---------',
                 style: TextStyle(
                   color: Colors.grey,
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               // Social Icons
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -139,7 +139,7 @@ class _Signin_consumerState extends State<Signin_consumer> {
                       height: 30,
                     ),
                   ),
-                  SizedBox(width: 20),
+                  const SizedBox(width: 20),
                   // Google Icon
                   CircleAvatar(
                     radius: 25,
@@ -152,22 +152,22 @@ class _Signin_consumerState extends State<Signin_consumer> {
                   ),
                 ],
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
+                  const Text(
                     'Already have an account?',
                     style: TextStyle(
                       color: Colors.grey,
                     ),
                   ),
-                  SizedBox(width: 5),
+                  const SizedBox(width: 5),
                   TextButton(
                     onPressed: () {
                       Navigator.pushNamed(context, '/signup_consumer');
                     },
-                    child: Text(
+                    child: const Text(
                       'Sign up',
                       style: TextStyle(
                         color: Colors.green,
@@ -185,7 +185,7 @@ class _Signin_consumerState extends State<Signin_consumer> {
 }
 
 class ForgotPasswordScreen extends StatefulWidget {
-  const ForgotPasswordScreen({Key? key}) : super(key: key);
+  const ForgotPasswordScreen({super.key});
 
   @override
   State<ForgotPasswordScreen> createState() => _ForgotPasswordScreenState();
@@ -196,30 +196,30 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Forgot Password'),
+        title: const Text('Forgot Password'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
+            const Text(
               'Enter your email address to reset your password.',
               textAlign: TextAlign.center,
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             TextFormField(
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 hintText: 'Email',
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
                 // Implement password reset logic here
                 // For example, send a reset email
               },
-              child: Text('Send Reset Email'),
+              child: const Text('Send Reset Email'),
             ),
           ],
         ),

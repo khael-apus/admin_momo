@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Settingsrider extends StatefulWidget {
-  const Settingsrider({Key? key}) : super(key: key);
+  const Settingsrider({super.key});
 
   @override
   State<Settingsrider> createState() => _SettingsriderState();
@@ -33,15 +33,15 @@ class _SettingsriderState extends State<Settingsrider> {
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
               child: Column(
                 children: [
-                  SizedBox(height: 10),
-                  Text(
+                  const SizedBox(height: 10),
+                  const Text(
                     'Settings',
                     style: TextStyle(
                       fontSize: 30,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(height: 30),
+                  const SizedBox(height: 30),
                   buildListTile(
                     leadingImage: 'Momo_images/solar_notification.png',
                     title: 'Notification Settings',

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ConsumerHome extends StatelessWidget {
-  const ConsumerHome({Key? key}) : super(key: key);
+  const ConsumerHome({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,9 +15,9 @@ class ConsumerHome extends StatelessWidget {
             Navigator.pop(context);
           },
         ),
-        actions: [
+        actions: const [
           Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: EdgeInsets.all(16.0),
             child: Icon(
               Icons.notifications_none,
               color: Colors.black,
@@ -29,8 +29,8 @@ class ConsumerHome extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
-              padding: const EdgeInsets.all(16.0),
+            const Padding(
+              padding: EdgeInsets.all(16.0),
               child: Text(
                 'Good morning,',
                 style: TextStyle(
@@ -48,8 +48,8 @@ class ConsumerHome extends StatelessWidget {
                     backgroundColor: Colors.grey[300],
                     child: Image.asset('Momo_images/Account.png'),
                   ),
-                  SizedBox(width: 20),
-                  Text(
+                  const SizedBox(width: 20),
+                  const Text(
                     'Juan D.',
                     style: TextStyle(
                       fontSize: 40,
@@ -60,14 +60,14 @@ class ConsumerHome extends StatelessWidget {
                 ],
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(16.0),
+            const Padding(
+              padding: EdgeInsets.all(16.0),
               child: Text(
                 '"Ready to restock? Whats on your grocery list today?"',
                 style: TextStyle(fontSize: 16),
               ),
             ),
-            SizedBox(height: 32),
+            const SizedBox(height: 32),
             Container(
               padding:
                   const EdgeInsets.symmetric(horizontal: 50.0, vertical: 5.0),
@@ -76,17 +76,17 @@ class ConsumerHome extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.green,
                   padding:
-                      EdgeInsets.symmetric(vertical: 5.0), // Adjusted padding
+                      const EdgeInsets.symmetric(vertical: 5.0), // Adjusted padding
                 ),
-                child: Text(
+                child: const Text(
                   '  + Create a New List         ',
                   style: TextStyle(fontSize: 40), // Set text size independently
                 ),
               ),
             ),
-            SizedBox(height: 32),
-            Padding(
-              padding: const EdgeInsets.all(16.0),
+            const SizedBox(height: 32),
+            const Padding(
+              padding: EdgeInsets.all(16.0),
               child: Text(
                 'My Lists',
                 style: TextStyle(
@@ -95,13 +95,13 @@ class ConsumerHome extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 TextButton(
                   onPressed: () {},
-                  child: Text(
+                  child: const Text(
                     'All',
                     style: TextStyle(
                       color: Colors.green,
@@ -111,7 +111,7 @@ class ConsumerHome extends StatelessWidget {
                 ),
                 TextButton(
                   onPressed: () {},
-                  child: Text(
+                  child: const Text(
                     'Folder',
                     style: TextStyle(
                       color: Colors.green,
@@ -121,18 +121,18 @@ class ConsumerHome extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: 32),
+            const SizedBox(height: 32),
             Center(
               child: Image.asset('Momo_images/No list.png'),
             ),
-            SizedBox(height: 16),
-            Center(
+            const SizedBox(height: 16),
+            const Center(
               child: Text(
                 'No list yet. Create one now.',
                 style: TextStyle(fontSize: 18),
               ),
             ),
-            SizedBox(height: 32),
+            const SizedBox(height: 32),
           ],
         ),
       ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Messengerrider extends StatefulWidget {
-  const Messengerrider({Key? key}) : super(key: key);
+  const Messengerrider({super.key});
 
   @override
   State<Messengerrider> createState() => _MessengerriderState();
@@ -21,7 +21,7 @@ class _MessengerriderState extends State<Messengerrider> {
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
+  const MyHomePage({super.key, required this.title});
 
   final String title;
 
@@ -70,20 +70,20 @@ class _MyHomePageState extends State<MyHomePage> {
             Expanded(
               child: ListView(
                 padding: const EdgeInsets.all(16),
-                children: [
+                children: const [
                   // Displaying messages in a ListView.builder
                   // You can replace this with your message data
-                  const ChatMessage(
+                  ChatMessage(
                     message:
                         'Good day ma\'am, walay egg diri na store, pwede sa lain store ko mag buy?',
                     isSent: false,
                   ),
-                  const ChatMessage(
+                  ChatMessage(
                     message:
                         'Yes, Pwede ra kaayu sa lain store sir, paki add nalang kog chocolate sir...',
                     isSent: true,
                   ),
-                  const ChatMessage(
+                  ChatMessage(
                     message: 'Cge po sir mag wait lang ko thanks!!',
                     isSent: true,
                   ),
@@ -95,9 +95,9 @@ class _MyHomePageState extends State<MyHomePage> {
               padding: const EdgeInsets.all(16.0),
               child: Row(
                 children: [
-                  Expanded(
+                  const Expanded(
                     child: TextField(
-                      decoration: const InputDecoration(
+                      decoration: InputDecoration(
                         hintText: 'Type your message...',
                       ),
                     ),
@@ -121,8 +121,7 @@ class ChatMessage extends StatelessWidget {
   final String message;
   final bool isSent;
 
-  const ChatMessage({Key? key, required this.message, required this.isSent})
-      : super(key: key);
+  const ChatMessage({super.key, required this.message, required this.isSent});
 
   @override
   Widget build(BuildContext context) {

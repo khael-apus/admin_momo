@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class User extends StatelessWidget {
-  const User({Key? key}) : super(key: key);
+  const User({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +40,7 @@ class User extends StatelessWidget {
                 ),
               ),
               Center(
-                child: Container(
+                child: SizedBox(
                   width: MediaQuery.sizeOf(context).width * 0.8,
                   height: MediaQuery.sizeOf(context).height * 0.3,
                   child: Column(

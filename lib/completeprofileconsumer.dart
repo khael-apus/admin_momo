@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Completeprofileconsumer extends StatelessWidget {
-  const Completeprofileconsumer({Key? key}) : super(key: key);
+  const Completeprofileconsumer({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -49,8 +49,8 @@ class Completeprofileconsumer extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    decoration: BoxDecoration(
-                      color: const Color(0xFF50C26F),
+                    decoration: const BoxDecoration(
+                      color: Color(0xFF50C26F),
                       shape: BoxShape.circle,
                     ),
                     padding: const EdgeInsets.all(5),

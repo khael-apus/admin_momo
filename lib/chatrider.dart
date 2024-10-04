@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Chatrider extends StatefulWidget {
-  const Chatrider({Key? key}) : super(key: key);
+  const Chatrider({super.key});
 
   @override
   State<Chatrider> createState() => _ChatriderState();
@@ -37,7 +37,7 @@ class _ChatriderState extends State<Chatrider> {
             color: Colors.green,
             width: double.infinity,
             padding: const EdgeInsets.all(20.0),
-            child: Text(
+            child: const Text(
               "Chats",
               style: TextStyle(
                 fontSize: 30,
@@ -58,7 +58,7 @@ class _ChatriderState extends State<Chatrider> {
                         Navigator.pushNamed(context, '/messengerrider',
                             arguments: "Juan Deck");
                       },
-                      child: ChatCard(
+                      child: const ChatCard(
                         avatar: 'Momo_images/Juan Deck.png',
                         name: "Juan Deck",
                         message: "Good morning, did you sleep well?",
@@ -71,7 +71,7 @@ class _ChatriderState extends State<Chatrider> {
                         Navigator.pushNamed(context, '/chatDetail',
                             arguments: "Juliet");
                       },
-                      child: ChatCard(
+                      child: const ChatCard(
                         avatar: 'Momo_images/Juliet.png',
                         name: "Juliet",
                         message: "How is it going?",
@@ -84,7 +84,7 @@ class _ChatriderState extends State<Chatrider> {
                         Navigator.pushNamed(context, '/chatDetail',
                             arguments: "Romeo");
                       },
-                      child: ChatCard(
+                      child: const ChatCard(
                         avatar: 'Momo_images/Romeo.png',
                         name: "Romeo",
                         message: "Aight, noted",
@@ -134,13 +134,13 @@ class _ChatriderState extends State<Chatrider> {
 
 class ChatCard extends StatelessWidget {
   const ChatCard({
-    Key? key,
+    super.key,
     required this.avatar,
     required this.name,
     required this.message,
     required this.time,
     required this.notification,
-  }) : super(key: key);
+  });
 
   final String avatar;
   final String name;
@@ -161,7 +161,7 @@ class ChatCard extends StatelessWidget {
               color: Colors.grey.withOpacity(0.3),
               spreadRadius: 2,
               blurRadius: 5,
-              offset: Offset(0, 3), // changes position of shadow
+              offset: const Offset(0, 3), // changes position of shadow
             ),
           ],
         ),
