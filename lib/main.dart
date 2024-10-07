@@ -33,6 +33,7 @@ import 'package:food/settingsconsumer.dart';
 import 'package:food/helpcenterconsumer.dart';
 import 'package:food/privacypolicyconsumer.dart';
 import 'package:food/inputlistconsumer.dart';
+import 'package:food/inputlistmakingconsumer.dart';
 import 'utils/user.dart';
 
 void main() {
@@ -84,6 +85,8 @@ class MomoApp extends StatelessWidget {
         '/helpcenterconsumer': (context) => const Helpcenterconsumer(),
         '/privacypolicyconsumer': (context) => const Privacypolicyconsumer(),
         '/inputlistconsumer': (context) => const Inputlistconsumer(),
+        '/inputlistmakingconsumer': (context) =>
+            const Inputlistmakingconsumer(),
       },
     );
   }
