@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => Messengerrider()),
+                MaterialPageRoute(builder: (context) => Messengerconsumer()),
               );
             },
             child: const Text('Open Momo Chat'),
@@ -25,14 +25,14 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class Messengerrider extends StatefulWidget {
-  const Messengerrider({super.key});
+class Messengerconsumer extends StatefulWidget {
+  const Messengerconsumer({super.key});
 
   @override
-  State<Messengerrider> createState() => _MessengerriderState();
+  State<Messengerconsumer> createState() => _MessengerconsumerState();
 }
 
-class _MessengerriderState extends State<Messengerrider> {
+class _MessengerconsumerState extends State<Messengerconsumer> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

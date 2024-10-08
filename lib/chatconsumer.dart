@@ -55,7 +55,7 @@ class _ChatconsumerState extends State<Chatconsumer> {
                   children: [
                     GestureDetector(
                       onTap: () {
-                        Navigator.pushNamed(context, '/messengerrider',
+                        Navigator.pushNamed(context, '/messengerconsumer',
                             arguments: "Juan Deck");
                       },
                       child: const ChatCard(
