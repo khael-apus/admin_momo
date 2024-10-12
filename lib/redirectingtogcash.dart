@@ -17,7 +17,7 @@ class Redirectingtogcash extends StatelessWidget {
               children: [
                 CircleAvatar(
                   radius:
-                      100, // Increased the radius to make the picture bigger
+                      200, // Increased the radius to make the picture bigger
                   backgroundColor: Colors.white,
                   child: Image.asset(
                     'Momo_images/gcash cat.png',
@@ -27,7 +27,7 @@ class Redirectingtogcash extends StatelessWidget {
                         300, // Increased the height to make the picture bigger
                   ),
                 ),
-                SizedBox(height: 20), // Space between the image and dots
+                SizedBox(height: 10), // Space between the image and dots
                 Row(
                   mainAxisAlignment:
                       MainAxisAlignment.center, // Center the dots
@@ -40,7 +40,7 @@ class Redirectingtogcash extends StatelessWidget {
                         shape: BoxShape.circle,
                       ),
                     ),
-                    SizedBox(width: 5), // Space between dots
+                    SizedBox(width: 20), // Space between dots
                     Container(
                       width: 10,
                       height: 10,
@@ -49,7 +49,16 @@ class Redirectingtogcash extends StatelessWidget {
                         shape: BoxShape.circle,
                       ),
                     ),
-                    SizedBox(width: 5), // Space between dots
+                    SizedBox(width: 20), // Space between dots
+                    Container(
+                      width: 10,
+                      height: 10,
+                      decoration: BoxDecoration(
+                        color: Colors.blue,
+                        shape: BoxShape.circle,
+                      ),
+                    ),
+                    SizedBox(width: 20), // Space between dots
                     Container(
                       width: 10,
                       height: 10,
