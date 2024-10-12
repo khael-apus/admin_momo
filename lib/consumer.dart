@@ -90,7 +90,9 @@ class Consumer extends StatelessWidget {
                     ),
                     const SizedBox(height: 16),
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/signin_consumer');
+                      },
                       child: const Text(
                         'Already have an account? Login',
                         style: TextStyle(

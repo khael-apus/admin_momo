@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 class Inputlistconsumer extends StatefulWidget {
   const Inputlistconsumer({super.key});
@@ -17,9 +18,25 @@ class _InputlistconsumerState extends State<Inputlistconsumer> {
   final _itemQuantityController = TextEditingController();
   final _itemSpecialInstructionsController = TextEditingController();
 
-  List<Map<String, String>> _items = [];
+  List<Map<String, dynamic>> _items = []; // Use dynamic to store images
+  Map<String, XFile?> _itemImages = {}; // Store images for each item
 
   bool _isTitleEditable = false;
+  bool _isEditing = false; // Flag for editing mode
+  int? _editingIndex; // To track which item is being edited
+
+  @override
+  void dispose() {
+    _titleController.dispose();
+    _dateController.dispose();
+    _itemNameController.dispose();
+    _itemDescriptionController.dispose();
+    _itemVolumeController.dispose();
+    _itemWeightController.dispose();
+    _itemQuantityController.dispose();
+    _itemSpecialInstructionsController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,9 +61,59 @@ class _InputlistconsumerState extends State<Inputlistconsumer> {
           padding: const EdgeInsets.all(16.0),
           child: IconButton(
             icon: Image.asset('Momo_images/Check icon.png'),
-            color: Colors.black,
             onPressed: () {
-              Navigator.pop(context);
+              showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    title: Text('Save Your List'),
+                    content: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        TextField(
+                          decoration: InputDecoration(
+                            labelText: ' List Title ',
+                            border: OutlineInputBorder(),
+                          ),
+                        ),
+                        DropdownButtonFormField(
+                          decoration: InputDecoration(
+                            labelText: '',
+                            border: OutlineInputBorder(),
+                          ),
+                          items: [
+                            DropdownMenuItem(child: Text('Unclassified')),
+                          ],
+                          onChanged: (value) {},
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            ElevatedButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              child: Text('Cancel'),
+                            ),
+                            ElevatedButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              child: Text('Save'),
+                            ),
+                            ElevatedButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              child: Text('Save & Order'),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              );
             },
           ),
         ),
@@ -70,11 +137,10 @@ class _InputlistconsumerState extends State<Inputlistconsumer> {
             ],
           ),
           const SizedBox(height: 16.0),
-          const SizedBox(height: 32),
           _buildImage(),
-          const SizedBox(height: 150),
-          _buildNoItemsText(),
-          _buildItemsList(),
+          const SizedBox(height: 20),
+          _items.isNotEmpty ? _buildItemsList() : _buildNoItemsText(),
+          const SizedBox(height: 150), // Added extra padding
         ],
       ),
     );
@@ -156,73 +222,9 @@ class _InputlistconsumerState extends State<Inputlistconsumer> {
           ),
         ),
         onPressed: () {
-          showDialog(
-            context: context,
-            builder: (context) => AlertDialog(
-              contentPadding:
-                  const EdgeInsets.only(left: 30, right: 30), // Add this line
-              title: const Text(
-                  '             Add an item to your list.                    '),
-              content: SingleChildScrollView(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const SizedBox(height: 10),
-                    _buildTextField("Name:", _itemNameController),
-                    const SizedBox(height: 10),
-                    _buildTextField("Description:", _itemDescriptionController),
-                    const SizedBox(height: 10),
-                    _buildTextField("Volume:", _itemVolumeController),
-                    const SizedBox(height: 10),
-                    _buildTextField("Weight:", _itemWeightController),
-                    const SizedBox(height: 10),
-                    _buildTextField("Quantity:", _itemQuantityController),
-                    const SizedBox(height: 10),
-                    _buildTextField(
-                      "Special Instructions:",
-                      _itemSpecialInstructionsController,
-                    ),
-                    const SizedBox(height: 10),
-                    _buildAddPictureButton(),
-                    const SizedBox(height: 10),
-                  ],
-                ),
-              ),
-              actions: [
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  child: const Text('Cancel'),
-                ),
-                TextButton(
-                  onPressed: () {
-                    setState(() {
-                      _items.add({
-                        "name": _itemNameController.text,
-                        "description": _itemDescriptionController.text,
-                        "volume": _itemVolumeController.text,
-                        "weight": _itemWeightController.text,
-                        "quantity": _itemQuantityController.text,
-                        "specialInstructions":
-                            _itemSpecialInstructionsController.text,
-                      });
-                    });
-                    _itemNameController.clear();
-                    _itemDescriptionController.clear();
-                    _itemVolumeController.clear();
-                    _itemWeightController.clear();
-                    _itemQuantityController.clear();
-                    _itemSpecialInstructionsController.clear();
-                    Navigator.of(context).pop();
-                  },
-                  child: const Text('Add'),
-                ),
-              ],
-            ),
-          );
+          _showAddOrEditItemDialog();
         },
-        child: const Text('     Add Item'),
+        child: const Text('Add Item'),
       ),
     );
   }
@@ -231,10 +233,14 @@ class _InputlistconsumerState extends State<Inputlistconsumer> {
     return Align(
       alignment: Alignment.centerLeft,
       child: TextButton(
-        onPressed: () {},
-        child: const Text(
-          'Edit          ',
-          style: TextStyle(
+        onPressed: () {
+          setState(() {
+            _isEditing = !_isEditing;
+          });
+        },
+        child: Text(
+          _isEditing ? 'Save' : 'Edit',
+          style: const TextStyle(
             color: Colors.black,
             fontSize: 20,
           ),
@@ -262,14 +268,162 @@ class _InputlistconsumerState extends State<Inputlistconsumer> {
   }
 
   Widget _buildItemsList() {
-    return Column(
-      children: _items.map((item) {
-        return ListTile(
-          title: Text(item["name"] ?? ""),
-          subtitle: Text(item["description"] ?? ""),
-        );
-      }).toList(),
+    return Padding(
+      padding: const EdgeInsets.all(16.0), // Added padding around the list
+      child: Column(
+        children: _items.asMap().entries.map((entry) {
+          int index = entry.key;
+          Map<String, dynamic> item = entry.value;
+          return Column(
+            children: [
+              OrderCard(
+                orderName: item["name"] ?? '',
+                description: item["description"] ?? '',
+                weight: item["weight"] ?? '',
+                volume: item["volume"] ?? '',
+                item: item["quantity"] ?? '',
+                specialInstructions: item["specialInstructions"] ?? '',
+                imagePicker: _itemImages[item["name"]] != null
+                    ? _itemImages[item["name"]]!.path
+                    : '',
+                onTap: () {
+                  _showAddOrEditItemDialog(editIndex: index);
+                },
+              ),
+              if (_isEditing)
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    IconButton(
+                      icon: const Icon(Icons.edit),
+                      onPressed: () {
+                        _showAddOrEditItemDialog(editIndex: index);
+                      },
+                    ),
+                    IconButton(
+                      icon: const Icon(Icons.delete),
+                      onPressed: () {
+                        setState(() {
+                          _items.removeAt(index);
+                          _itemImages.remove(item["name"]);
+                        });
+                      },
+                    ),
+                  ],
+                ),
+            ],
+          );
+        }).toList(),
+      ),
     );
+  }
+
+  void _showAddOrEditItemDialog({int? editIndex}) {
+    if (editIndex != null) {
+      // If editing, populate fields with current values
+      final item = _items[editIndex];
+      _itemNameController.text = item["name"];
+      _itemDescriptionController.text = item["description"];
+      _itemVolumeController.text = item["volume"];
+      _itemWeightController.text = item["weight"];
+      _itemQuantityController.text = item["quantity"];
+      _itemSpecialInstructionsController.text = item["specialInstructions"];
+    } else {
+      _itemNameController.clear();
+      _itemDescriptionController.clear();
+      _itemVolumeController.clear();
+      _itemWeightController.clear();
+      _itemQuantityController.clear();
+      _itemSpecialInstructionsController.clear();
+    }
+
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        contentPadding: const EdgeInsets.only(left: 30, right: 30),
+        title: const Text('Add/Edit an item'),
+        content: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const SizedBox(height: 10),
+              _buildTextField("Name:", _itemNameController),
+              const SizedBox(height: 10),
+              _buildTextField("Description:", _itemDescriptionController),
+              const SizedBox(height: 10),
+              _buildTextField("Volume:", _itemVolumeController),
+              const SizedBox(height: 10),
+              _buildTextField("Weight:", _itemWeightController),
+              const SizedBox(height: 10),
+              _buildTextField("Quantity:", _itemQuantityController),
+              const SizedBox(height: 10),
+              _buildTextField(
+                "Special Instructions:",
+                _itemSpecialInstructionsController,
+              ),
+              const SizedBox(height: 10),
+              _buildAddPictureButton(),
+              const SizedBox(height: 10),
+            ],
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('Cancel'),
+          ),
+          TextButton(
+            onPressed: () {
+              _addOrEditItem(editIndex: editIndex);
+              Navigator.pop(context);
+            },
+            child: const Text('Save'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _addOrEditItem({int? editIndex}) {
+    final item = {
+      "name": _itemNameController.text,
+      "description": _itemDescriptionController.text,
+      "volume": _itemVolumeController.text,
+      "weight": _itemWeightController.text,
+      "quantity": _itemQuantityController.text,
+      "specialInstructions": _itemSpecialInstructionsController.text,
+    };
+
+    if (editIndex != null) {
+      // Edit existing item
+      setState(() {
+        _items[editIndex] = item;
+      });
+    } else {
+      // Add new item
+      setState(() {
+        _items.add(item);
+      });
+    }
+  }
+
+  Widget _buildAddPictureButton() {
+    return ElevatedButton(
+      onPressed: _pickImage,
+      child: const Text("Add Picture"),
+    );
+  }
+
+  Future<void> _pickImage() async {
+    final picker = ImagePicker();
+    final XFile? pickedImage =
+        await picker.pickImage(source: ImageSource.gallery);
+
+    if (pickedImage != null) {
+      setState(() {
+        _itemImages[_itemNameController.text] = pickedImage;
+      });
+    }
   }
 
   Widget _buildTextField(String label, TextEditingController controller) {
@@ -282,10 +436,46 @@ class _InputlistconsumerState extends State<Inputlistconsumer> {
     );
   }
 
-  Widget _buildAddPictureButton() {
-    return ElevatedButton(
-      onPressed: () {},
-      child: const Text('Add a picture'),
+  void _saveChanges() {
+    setState(() {
+      _isEditing = false;
+    });
+  }
+}
+
+class OrderCard extends StatelessWidget {
+  final String orderName;
+  final String description;
+  final String weight;
+  final String volume;
+  final String item;
+  final String specialInstructions;
+  final String imagePicker;
+  final VoidCallback onTap;
+
+  const OrderCard({
+    required this.orderName,
+    required this.description,
+    required this.weight,
+    required this.volume,
+    required this.item,
+    required this.specialInstructions,
+    required this.imagePicker,
+    required this.onTap,
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Card(
+        child: ListTile(
+          title: Text(orderName),
+          subtitle: Text(description),
+          trailing: Image.asset(imagePicker),
+        ),
+      ),
     );
   }
 }

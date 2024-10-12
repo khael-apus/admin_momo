@@ -130,7 +130,8 @@ class OrderCard extends StatelessWidget {
   final String imagePath;
   final VoidCallback onTap;
 
-  const OrderCard({super.key, 
+  const OrderCard({
+    super.key,
     required this.orderNumber,
     required this.date,
     required this.estimatedDelivery,
