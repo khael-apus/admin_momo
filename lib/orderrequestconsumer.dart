@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class Orderlistrequestconsumer extends StatelessWidget {
-  const Orderlistrequestconsumer({Key? key}) : super(key: key);
+class Orderrequestconsumer extends StatelessWidget {
+  const Orderrequestconsumer({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class Orderlistrequestconsumer extends StatelessWidget {
         ),
         title: const Center(
           child: Text(
-            "Order List",
+            "Order Request",
             style: TextStyle(
               color: Colors.white,
               fontSize: 24,
@@ -32,22 +32,6 @@ class Orderlistrequestconsumer extends StatelessWidget {
               child: Column(
                 children: [
                   const SizedBox(height: 20),
-                  ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFF4CAF50),
-                      textStyle: const TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 40,
-                        vertical: 15,
-                      ),
-                    ),
-                    child: const Text("Add"),
-                  ),
-                  const SizedBox(height: 20),
                   Container(
                     padding: const EdgeInsets.all(16),
                     decoration: const BoxDecoration(
@@ -61,6 +45,108 @@ class Orderlistrequestconsumer extends StatelessWidget {
                     ),
                     child: Column(
                       children: [
+                        // Delivery Address
+                        Container(
+                          padding: const EdgeInsets.symmetric(vertical: 16),
+                          child: Row(
+                            children: [
+                              const Icon(Icons.location_on, size: 24),
+                              const SizedBox(width: 16),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: const [
+                                    Text(
+                                      "Delivery Address:",
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    SizedBox(height: 8),
+                                    Text(
+                                      "Juan Deck | +(63)9123456789",
+                                      style: TextStyle(fontSize: 16),
+                                    ),
+                                    Text(
+                                      "Zone 6, Gumamela Street",
+                                      style: TextStyle(fontSize: 16),
+                                    ),
+                                    Text(
+                                      "Brgy. San Roque, Antipolo City",
+                                      style: TextStyle(fontSize: 16),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(height: 16),
+
+                        // Delivery Window
+                        Container(
+                          padding: const EdgeInsets.symmetric(vertical: 16),
+                          child: Row(
+                            children: [
+                              const Icon(Icons.access_time, size: 24),
+                              const SizedBox(width: 16),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: const [
+                                    Text(
+                                      "Delivery Window:",
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    SizedBox(height: 8),
+                                    Text(
+                                      "Today, 2:00 PM - 5:00 PM",
+                                      style: TextStyle(fontSize: 16),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(height: 16),
+
+                        // Pick a Shop
+                        Container(
+                          padding: const EdgeInsets.symmetric(vertical: 16),
+                          child: Row(
+                            children: [
+                              const Icon(Icons.store, size: 24),
+                              const SizedBox(width: 16),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: const [
+                                    Text(
+                                      "Pick a Shop:",
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    SizedBox(height: 8),
+                                    Text(
+                                      "Shop 1 - Antipolo Branch",
+                                      style: TextStyle(fontSize: 16),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(height: 16),
+
+                        // Order Items
                         Card(
                           child: Padding(
                             padding: const EdgeInsets.all(16),
@@ -316,6 +402,107 @@ class Orderlistrequestconsumer extends StatelessWidget {
                                 ),
                               ],
                             ),
+                          ),
+                        ),
+                        Container(
+                          padding: const EdgeInsets.symmetric(vertical: 16),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: const [
+                                    Text(
+                                      "Number of items:                        6",
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Container(
+                          padding: const EdgeInsets.symmetric(vertical: 16),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: const [
+                                    Text(
+                                      "Est. Order Total:                          P",
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Container(
+                          padding: const EdgeInsets.symmetric(vertical: 16),
+                          child: Row(
+                            children: [
+                              const Icon(Icons.location_on, size: 24),
+                              const SizedBox(width: 16),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: const [
+                                    Text(
+                                      "Payment Option:                Gcash",
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Container(
+                          padding: const EdgeInsets.symmetric(vertical: 16),
+                          child: Row(
+                            children: [
+                              const Icon(Icons.location_on, size: 24),
+                              const SizedBox(width: 16),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: const [
+                                    Text(
+                                      "Payment Details:",
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    SizedBox(height: 8),
+                                    Text(
+                                      "Merchandise Estimated Subtotal",
+                                      style: TextStyle(fontSize: 16),
+                                    ),
+                                    Text(
+                                      "Shipping Subtotal",
+                                      style: TextStyle(fontSize: 16),
+                                    ),
+                                    Text(
+                                      "Transaction Fee",
+                                      style: TextStyle(fontSize: 16),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ],
@@ -330,7 +517,7 @@ class Orderlistrequestconsumer extends StatelessWidget {
             child: Column(
               children: [
                 Text(
-                  "Estimated Total: \$30.00",
+                  "Total Payment: \$30.00",
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
@@ -339,7 +526,7 @@ class Orderlistrequestconsumer extends StatelessWidget {
                 const SizedBox(height: 16),
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, '/orderrequestconsumer');
+                    Navigator.pushNamed(context, '/redirectingtogcash');
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFF4CAF50),
@@ -352,7 +539,7 @@ class Orderlistrequestconsumer extends StatelessWidget {
                       vertical: 15,
                     ),
                   ),
-                  child: const Text("Request Order"),
+                  child: const Text("Send Request"),
                 ),
               ],
             ),

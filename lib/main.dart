@@ -35,6 +35,8 @@ import 'package:food/privacypolicyconsumer.dart';
 import 'package:food/inputlistconsumer.dart';
 import 'package:food/orderlistrequestconsumer.dart';
 import 'package:food/messengerconsumer.dart';
+import 'package:food/orderrequestconsumer.dart';
+import 'package:food/redirectingtogcash.dart';
 import 'utils/user.dart';
 
 void main() {
@@ -89,6 +91,8 @@ class MomoApp extends StatelessWidget {
         '/orderlistrequestconsumer': (context) =>
             const Orderlistrequestconsumer(),
         '/messengerconsumer': (context) => const Messengerconsumer(),
+        '/orderrequestconsumer': (context) => const Orderrequestconsumer(),
+        '/redirectingtogcash': (context) => const Redirectingtogcash(),
       },
     );
   }
