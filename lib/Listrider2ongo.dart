@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class Listrider extends StatefulWidget {
-  const Listrider({super.key});
+class Listrider2ongo extends StatefulWidget {
+  const Listrider2ongo({super.key});
 
   @override
-  State<Listrider> createState() => _ListriderState();
+  State<Listrider2ongo> createState() => _Listrider2ongoState();
 }
 
-class _ListriderState extends State<Listrider>
+class _Listrider2ongoState extends State<Listrider2ongo>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
@@ -46,15 +46,26 @@ class _ListriderState extends State<Listrider>
         controller: _tabController,
         children: [
           // Ongoing Orders
-          const Center(
-            child: Text('No ongoing orders.'),
+          SingleChildScrollView(
+            child: Column(
+              children: [
+                OrderCard(
+                  orderNumber: '123456',
+                  date: '25 - May - 2024, 1:00 PM',
+                  estimatedDelivery: 'Est. Delivery on 28, May',
+                  items: '4 items',
+                  price: '1165.00',
+                  imagePath: 'Momo_images/egg.png',
+                ),
+              ],
+            ),
           ),
           // Order History
           SingleChildScrollView(
             child: Column(
               children: [
                 OrderCard(
-                  orderNumber: '123456',
+                  orderNumber: '1234565',
                   date: '25 - May - 2024, 1:00 PM',
                   estimatedDelivery: 'Est. Delivery on 28, May',
                   items: '4 items',
@@ -131,7 +142,7 @@ class OrderCard extends StatelessWidget {
       child: InkWell(
         onTap: () {
           // Handle order tap
-          Navigator.pushNamed(context, '/XXXXXX');
+          Navigator.pushNamed(context, '/orderriderupdate');
         },
         child: Container(
           padding: const EdgeInsets.all(16),

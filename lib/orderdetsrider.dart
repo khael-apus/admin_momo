@@ -164,7 +164,7 @@ class OrderDetailsScreen extends StatelessWidget {
                           const SizedBox(height: 24),
                           ElevatedButton(
                             onPressed: () {
-                              Navigator.pop(context);
+                              Navigator.pushNamed(context, '/listrider2ongo');
                             },
                             style: ElevatedButton.styleFrom(
                               minimumSize: const Size(double.infinity, 50),
@@ -198,7 +198,8 @@ class OrderItem extends StatelessWidget {
   final String price;
   final int quantity;
 
-  const OrderItem({super.key, 
+  const OrderItem({
+    super.key,
     required this.imageUrl,
     required this.name,
     required this.description,

@@ -37,6 +37,11 @@ import 'package:food/orderlistrequestconsumer.dart';
 import 'package:food/messengerconsumer.dart';
 import 'package:food/orderrequestconsumer.dart';
 import 'package:food/redirectingtogcash.dart';
+import 'package:food/waitingconsumer.dart';
+import 'package:food/estarrivalconsumer.dart';
+import 'package:food/Listrider2ongo.dart';
+import 'package:food/orderriderupdate.dart';
+import 'package:food/orderrecieptrider.dart';
 import 'utils/user.dart';
 
 void main() {
@@ -93,6 +98,11 @@ class MomoApp extends StatelessWidget {
         '/messengerconsumer': (context) => const Messengerconsumer(),
         '/orderrequestconsumer': (context) => const Orderrequestconsumer(),
         '/redirectingtogcash': (context) => const Redirectingtogcash(),
+        '/waitingconsumer': (context) => const Waitingconsumer(),
+        '/estarrivalconsumer': (context) => const Estarrivalconsumer(),
+        '/listrider2ongo': (context) => const Listrider2ongo(),
+        '/orderriderupdate': (context) => const Orderriderupdate(),
+        '/orderrecieptrider': (context) => const Orderrecieptrider(),
       },
     );
   }

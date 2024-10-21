@@ -5,11 +5,15 @@ class Redirectingtogcash extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false, // Remove debug banner
-      home: Scaffold(
-        appBar: AppBar(),
-        body: Container(
+    return Scaffold(
+      appBar: AppBar(),
+      body: GestureDetector(
+        onTap: () {
+          // Navigate to the named route when tapped
+          Navigator.pushNamed(context,
+              '/waitingconsumer'); // Ensure this route is defined in your app
+        },
+        child: Container(
           color: Colors.white, // Set solid white background
           child: Center(
             child: Column(
@@ -20,7 +24,7 @@ class Redirectingtogcash extends StatelessWidget {
                       200, // Increased the radius to make the picture bigger
                   backgroundColor: Colors.white,
                   child: Image.asset(
-                    'Momo_images/gcash cat.png',
+                    'Momo_images/gcash cat.png', // Ensure this path is correct
                     width:
                         500, // Increased the width to make the picture bigger
                     height:
@@ -31,43 +35,19 @@ class Redirectingtogcash extends StatelessWidget {
                 Row(
                   mainAxisAlignment:
                       MainAxisAlignment.center, // Center the dots
-                  children: [
-                    Container(
-                      width: 10,
-                      height: 10,
-                      decoration: BoxDecoration(
-                        color: Colors.blue,
-                        shape: BoxShape.circle,
+                  children: List.generate(4, (index) {
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                      child: Container(
+                        width: 10,
+                        height: 10,
+                        decoration: BoxDecoration(
+                          color: Colors.blue,
+                          shape: BoxShape.circle,
+                        ),
                       ),
-                    ),
-                    SizedBox(width: 20), // Space between dots
-                    Container(
-                      width: 10,
-                      height: 10,
-                      decoration: BoxDecoration(
-                        color: Colors.blue,
-                        shape: BoxShape.circle,
-                      ),
-                    ),
-                    SizedBox(width: 20), // Space between dots
-                    Container(
-                      width: 10,
-                      height: 10,
-                      decoration: BoxDecoration(
-                        color: Colors.blue,
-                        shape: BoxShape.circle,
-                      ),
-                    ),
-                    SizedBox(width: 20), // Space between dots
-                    Container(
-                      width: 10,
-                      height: 10,
-                      decoration: BoxDecoration(
-                        color: Colors.blue,
-                        shape: BoxShape.circle,
-                      ),
-                    ),
-                  ],
+                    );
+                  }),
                 ),
               ],
             ),
