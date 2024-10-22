@@ -16,7 +16,7 @@ class _OrderrecieptriderState extends State<Orderrecieptrider> {
         leading: IconButton(
           icon: Image.asset('Momo_images/back.png', height: 30, width: 30),
           onPressed: () {
-            Navigator.pop(context);
+            Navigator.pushNamed(context, '/riderHome');
           },
         ),
       ),
