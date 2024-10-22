@@ -97,8 +97,7 @@ class _Signin_consumerState extends State<Signin_consumer> {
               // Sign Up Button
               ElevatedButton(
                 onPressed: () {
-                  // Navigate to the next screen or perform other actions
-                  // Example: Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()));
+                  Navigator.pushNamed(context, '/consumerHome');
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.green,

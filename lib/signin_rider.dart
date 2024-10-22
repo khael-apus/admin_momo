@@ -97,8 +97,7 @@ class _Signin_riderState extends State<Signin_rider> {
               // Sign Up Button
               ElevatedButton(
                 onPressed: () {
-                  // Navigate to the next screen or perform other actions
-                  // Example: Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()));
+                  Navigator.pushNamed(context, '/riderHome');
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.green,

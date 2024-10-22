@@ -90,7 +90,9 @@ class Rider extends StatelessWidget {
                     ),
                     const SizedBox(height: 16),
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/signin_rider');
+                      },
                       child: const Text(
                         'Already have an account? Login',
                         style: TextStyle(

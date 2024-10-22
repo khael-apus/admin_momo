@@ -1,4 +1,6 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:food/firebase_options.dart';
 import 'package:food/utils/rider.dart';
 import 'package:food/signup_rider.dart';
 import 'package:food/signin_rider.dart';
@@ -44,7 +46,15 @@ import 'package:food/orderriderupdate.dart';
 import 'package:food/orderrecieptrider.dart';
 import 'utils/user.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  try {
+    await Firebase.initializeApp(
+        options: DefaultFirebaseOptions.currentPlatform);
+    print('Firebase initialized successfully');
+  } catch (e) {
+    print('Firebase could not initalize');
+  }
   runApp(const MomoApp());
 }
 

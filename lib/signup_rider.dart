@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food/firebase/firebase_auth_service.dart';
 
 class Signup_rider extends StatefulWidget {
   const Signup_rider({super.key});
@@ -9,6 +10,9 @@ class Signup_rider extends StatefulWidget {
 
 class _Signup_riderState extends State<Signup_rider> {
   bool _agreeToTerms = false;
+  final FirebaseAuthService _service = FirebaseAuthService();
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
 
   void _showTermsAndConditions() {
     showDialog(
@@ -164,6 +168,7 @@ class _Signup_riderState extends State<Signup_rider> {
               const SizedBox(height: 20),
               // Email
               TextFormField(
+                controller: _emailController,
                 decoration: InputDecoration(
                   hintText: 'Email',
                   border: OutlineInputBorder(
@@ -177,6 +182,7 @@ class _Signup_riderState extends State<Signup_rider> {
               const SizedBox(height: 20),
               // Password
               TextFormField(
+                controller: _passwordController,
                 obscureText: true,
                 decoration: InputDecoration(
                   hintText: 'Password',
@@ -216,6 +222,7 @@ class _Signup_riderState extends State<Signup_rider> {
               // Sign Up Button
               ElevatedButton(
                 onPressed: () {
+                  // _service.registerCredential(email, password)
                   Navigator.pushNamed(context, '/verificationRider');
                 },
                 style: ElevatedButton.styleFrom(
