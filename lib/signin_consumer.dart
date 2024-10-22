@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food/firebase/firebase_auth_service.dart';
 
 class Signin_consumer extends StatefulWidget {
   const Signin_consumer({super.key});
@@ -8,6 +9,10 @@ class Signin_consumer extends StatefulWidget {
 }
 
 class _Signin_consumerState extends State<Signin_consumer> {
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
+  final FirebaseAuthService _service = FirebaseAuthService();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,8 +55,9 @@ class _Signin_consumerState extends State<Signin_consumer> {
               const SizedBox(height: 50),
               // First Name
               TextFormField(
+                controller: _emailController,
                 decoration: InputDecoration(
-                  hintText: 'Username',
+                  hintText: 'Email',
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20),
                     borderSide: BorderSide.none,
@@ -64,6 +70,7 @@ class _Signin_consumerState extends State<Signin_consumer> {
               // Last Name
 
               TextFormField(
+                controller: _passwordController,
                 obscureText: true,
                 decoration: InputDecoration(
                   hintText: 'Password',
@@ -79,12 +86,34 @@ class _Signin_consumerState extends State<Signin_consumer> {
               const SizedBox(height: 20),
               // Forgot Password
               TextButton(
-                onPressed: () {
-                  // Navigate to forgot password screen
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const ForgotPasswordScreen()));
+                onPressed: () async {
+                  final emailString = _emailController.text.trim();
+                  final passwordString = _passwordController.text.trim();
+
+                  final user = await _service.verifyCredential(
+                      emailString, passwordString);
+                  user != null
+                      ?{ Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  const ForgotPasswordScreen()))
+                      }: {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text('Invalid credentials'),
+                              duration: Duration(
+                                  seconds:
+                                      3), // Duration the Snackbar will be shown
+                              action: SnackBarAction(
+                                label: 'Undo',
+                                onPressed: () {
+                                  // Code to execute when the action is pressed
+                                },
+                              ),
+                            ),
+                          )
+                      };
                 },
                 child: const Text(
                   'Forgot Password?',

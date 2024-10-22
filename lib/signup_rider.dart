@@ -221,8 +221,11 @@ class _Signup_riderState extends State<Signup_rider> {
               const SizedBox(height: 40),
               // Sign Up Button
               ElevatedButton(
-                onPressed: () {
-                  // _service.registerCredential(email, password)
+                onPressed: () async {
+                  final String emailString = _emailController.text.trim();
+                  final String passwordString = _passwordController.text.trim();
+
+                  await _service.registerCredential(emailString, passwordString);
                   Navigator.pushNamed(context, '/verificationRider');
                 },
                 style: ElevatedButton.styleFrom(

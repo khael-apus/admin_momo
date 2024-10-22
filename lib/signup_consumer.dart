@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food/firebase/firebase_auth_service.dart';
 
 class Signup_consumer extends StatefulWidget {
   const Signup_consumer({super.key});
@@ -9,6 +10,9 @@ class Signup_consumer extends StatefulWidget {
 
 class _Signup_consumerState extends State<Signup_consumer> {
   bool _agreeToTerms = false;
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
+  final FirebaseAuthService _service = FirebaseAuthService();
 
   void _showTermsAndConditions() {
     showDialog(
@@ -164,6 +168,7 @@ class _Signup_consumerState extends State<Signup_consumer> {
               const SizedBox(height: 20),
               // Email
               TextFormField(
+                controller: _emailController,
                 decoration: InputDecoration(
                   hintText: 'Email',
                   border: OutlineInputBorder(
@@ -177,6 +182,7 @@ class _Signup_consumerState extends State<Signup_consumer> {
               const SizedBox(height: 20),
               // Password
               TextFormField(
+                controller: _passwordController,
                 obscureText: true,
                 decoration: InputDecoration(
                   hintText: 'Password',
@@ -215,7 +221,12 @@ class _Signup_consumerState extends State<Signup_consumer> {
               const SizedBox(height: 40),
               // Sign Up Button
               ElevatedButton(
-                onPressed: () {
+                onPressed: () async {
+                  final emailString = _emailController.text.trim();
+                  final passswordString = _passwordController.text.trim();
+
+                  await _service.registerCredential(
+                      emailString, passswordString);
                   Navigator.pushNamed(context, '/verificationConsumer');
                 },
                 style: ElevatedButton.styleFrom(
