@@ -28,3 +28,21 @@ void main() {
     expect(find.text('1'), findsOneWidget);
   });
 }
+
+// void main() {
+//   final FirebaseAuthService firebaseAuthService;
+//   final MockFirebaseAuth mockFirebaseAuth;
+
+
+//   group('Firebase Auth service tests', () {
+//     test('should create new user', () async {
+//       final data = {
+//         'email': 'test@example.com',
+//         'password': 'password123'
+//       };
+
+//       await 
+
+
+//     });  
+//   });
