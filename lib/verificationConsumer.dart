@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'completeprofileconsumer.dart'; // Make sure to import CompleteProfileConsumer here.
 
 class VerificationConsumer extends StatefulWidget {
-  const VerificationConsumer({super.key});
+  final String uid;
+
+  const VerificationConsumer({Key? key, required this.uid}) : super(key: key);
 
   @override
   State<VerificationConsumer> createState() => _VerificationConsumerState();
@@ -158,7 +161,13 @@ class _VerificationConsumerState extends State<VerificationConsumer> {
                   ),
                 ),
                 onPressed: () {
-                  Navigator.pushNamed(context, '/completeprofileconsumer');
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          CompleteProfileConsumer(uid: widget.uid),
+                    ),
+                  );
                 },
                 child: const Text('Verify'),
               ),

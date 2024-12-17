@@ -1,45 +1,50 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class FirebaseAuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  Future<void> registerCredential(String email, String password) async {
+  // Register user and save data in Firestore
+  Future<UserCredential> registerCredential(
+      String email, String password) async {
     try {
-      final userCredential = await _auth.createUserWithEmailAndPassword(
-          email: email, password: password);
+      // Create user with email and password
+      UserCredential userCredential =
+          await _auth.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+
+      // If user is successfully created, store their information in Firestore
+      User? user = userCredential.user;
+      if (user != null) {
+        await _firestore.collection('Consumer').doc(user.uid).set({
+          'email': email,
+          'uid': user.uid,
+          'createdAt': FieldValue.serverTimestamp(),
+        });
+      }
+
+      // Return the UserCredential
+      return userCredential; // Ensure you return this
     } catch (e) {
-      print('Error creating user: $e');
+      print("Error during registration: $e");
+      rethrow; // Re-throw the exception to handle it in the calling code
     }
   }
 
-  // Future<void> registerCredential(
-  //     String email,
-  //     String password,
-  //     final Function(UserCredential) onCreate,
-  //     final Function(User?) onCreated,
-  //     final Function(String uid) onSuccess) async {
-  //   try {
-  //     final userCredential = await _auth.createUserWithEmailAndPassword(
-  //         email: email, password: password);
-  //     onCreate(userCredential);
-  //     final user = userCredential.user;
-  //     onCreated(user);
-  //     if (user != null) {
-  //     onSuccess(user.uid);
-  //   }
-  // } catch (e) {
-  //   print("Error during user creation: $e");
-  // }
-  // }
-
+  // Verify user credentials
   Future<UserCredential?> verifyCredential(
       String email, String password) async {
     try {
-      final user = await _auth.signInWithEmailAndPassword(
-          email: email, password: password);
-      return user;
+      final userCredential = await _auth.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      return userCredential;
     } catch (e) {
-      print('Error loggin in user');
+      print('Error logging in user: $e');
       return null;
     }
   }

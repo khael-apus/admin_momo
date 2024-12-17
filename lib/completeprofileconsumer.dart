@@ -1,7 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
-class Completeprofileconsumer extends StatelessWidget {
-  const Completeprofileconsumer({super.key});
+class CompleteProfileConsumer extends StatefulWidget {
+  final String uid;
+
+  const CompleteProfileConsumer({Key? key, required this.uid})
+      : super(key: key);
+
+  @override
+  _CompleteProfileConsumerState createState() =>
+      _CompleteProfileConsumerState();
+}
+
+class _CompleteProfileConsumerState extends State<CompleteProfileConsumer> {
+  String _selectedGender = 'Male';
+  TextEditingController _usernameController = TextEditingController();
+  TextEditingController _mobileNumberController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -73,6 +87,7 @@ class Completeprofileconsumer extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             TextField(
+              controller: _usernameController,
               decoration: InputDecoration(
                 hintText: 'Enter your username',
                 border: OutlineInputBorder(
@@ -93,6 +108,7 @@ class Completeprofileconsumer extends StatelessWidget {
               children: [
                 Expanded(
                   child: TextField(
+                    controller: _mobileNumberController,
                     decoration: InputDecoration(
                       hintText: 'Enter your phone number',
                       border: OutlineInputBorder(
@@ -141,13 +157,29 @@ class Completeprofileconsumer extends StatelessWidget {
                   child: Text('Female'),
                 ),
               ],
-              onChanged: (value) {},
+              onChanged: (value) {
+                setState(() {
+                  _selectedGender = value.toString(); // Update selected value
+                });
+              },
             ),
             const SizedBox(height: 40),
             Center(
               child: ElevatedButton(
-                onPressed: () {
+                onPressed: () async {
                   Navigator.pushNamed(context, '/consumerHome');
+                  final usernameString = _usernameController.text.trim();
+                  final mobileNumberString =
+                      _mobileNumberController.text.trim();
+
+                  await FirebaseFirestore.instance
+                      .collection('Consumer')
+                      .doc(widget.uid)
+                      .update({
+                    'User Name': usernameString,
+                    'Mobile Number': mobileNumberString,
+                    'Gender': _selectedGender,
+                  });
                 },
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.symmetric(

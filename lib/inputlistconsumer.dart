@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Inputlistconsumer extends StatefulWidget {
   const Inputlistconsumer({super.key});
@@ -17,6 +18,22 @@ class _InputlistconsumerState extends State<Inputlistconsumer> {
   final _itemWeightController = TextEditingController();
   final _itemQuantityController = TextEditingController();
   final _itemSpecialInstructionsController = TextEditingController();
+
+  Future<void> saveDetails() async {
+    final titleString = _titleController.text.trim();
+    final itemNameString = _itemNameController.text.trim();
+    final itemDescriptionString = _itemDescriptionController.text.trim();
+    final itemVolume = double.parse(_itemVolumeController.text.trim());
+    final itemWeight = double.parse(_itemWeightController.text.trim());
+    final itemSpecialInstructionsString =
+        _itemSpecialInstructionsController.text.trim();
+
+    // await FirebaseFirestore.instance.collection('Consumer').doc(uid).collection('List').doc(lid).set({
+    //    'Title': titleString,
+    //    'createdAt': Timestamp.now(),
+    //  },
+    // );
+  }
 
   List<Map<String, dynamic>> _items = []; // Use dynamic to store images
   Map<String, XFile?> _itemImages = {}; // Store images for each item
@@ -70,12 +87,29 @@ class _InputlistconsumerState extends State<Inputlistconsumer> {
                     content: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
+                        const Text(
+                          'Title',
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const SizedBox(height: 10),
                         TextField(
+                          controller: _titleController,
                           decoration: InputDecoration(
-                            labelText: ' List Title ',
+                            hintText: _titleController.text.trim(),
                             border: OutlineInputBorder(),
                           ),
                         ),
+                        const Text(
+                          'Folder',
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const SizedBox(height: 10),
                         DropdownButtonFormField(
                           decoration: InputDecoration(
                             labelText: '',
@@ -97,6 +131,7 @@ class _InputlistconsumerState extends State<Inputlistconsumer> {
                             ),
                             ElevatedButton(
                               onPressed: () {
+                                saveDetails();
                                 Navigator.pop(context);
                               },
                               child: Text('Save'),
@@ -167,7 +202,7 @@ class _InputlistconsumerState extends State<Inputlistconsumer> {
             ),
             decoration: const InputDecoration(
               border: InputBorder.none,
-              hintText: 'Input title',
+              hintText: 'Input Title',
             ),
           ),
         ),

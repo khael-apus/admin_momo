@@ -1,17 +1,21 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:food/firebase/firebase_auth_service.dart';
+import 'package:food/verificationConsumer.dart'; // Correct import
 
-class Signup_consumer extends StatefulWidget {
-  const Signup_consumer({super.key});
+class SignupConsumer extends StatefulWidget {
+  const SignupConsumer({super.key});
 
   @override
-  State<Signup_consumer> createState() => _Signup_consumerState();
+  State<SignupConsumer> createState() => _SignupConsumerState();
 }
 
-class _Signup_consumerState extends State<Signup_consumer> {
+class _SignupConsumerState extends State<SignupConsumer> {
   bool _agreeToTerms = false;
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
+  TextEditingController _LastNameController = TextEditingController();
+  TextEditingController _FirstNameController = TextEditingController();
   final FirebaseAuthService _service = FirebaseAuthService();
 
   void _showTermsAndConditions() {
@@ -100,6 +104,57 @@ class _Signup_consumerState extends State<Signup_consumer> {
     );
   }
 
+  Future<void> signUp() async {
+    if (!_agreeToTerms) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('You must agree to the terms and conditions.'),
+        ),
+      );
+      return;
+    }
+
+    final emailString = _emailController.text.trim();
+    final passwordString = _passwordController.text.trim();
+    final lastNameString = _LastNameController.text.trim();
+    final firstNameString = _FirstNameController.text.trim();
+
+    try {
+      // Register user with FirebaseAuthService
+      final userCredential =
+          await _service.registerCredential(emailString, passwordString);
+      final uid = userCredential.user?.uid; // Get UID of the registered user
+
+      if (uid == null) {
+        throw Exception("User ID is null.");
+      }
+
+      // Save user data in Firestore under the same UID
+      await FirebaseFirestore.instance.collection('Consumer').doc(uid).set({
+        'First Name': firstNameString,
+        'Last Name': lastNameString,
+        'email': emailString,
+        'User Name': '', // Empty or default values
+        'Mobile Number': '',
+        'Gender': '',
+      }, SetOptions(merge: true));
+
+      // Navigate to the next page with the UID
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => VerificationConsumer(uid: uid), 
+        ),
+      );
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Registration failed: $e'),
+        ),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -140,8 +195,10 @@ class _Signup_consumerState extends State<Signup_consumer> {
                 ),
               ),
               const SizedBox(height: 50),
+
               // First Name
               TextFormField(
+                controller: _FirstNameController,
                 decoration: InputDecoration(
                   hintText: 'First Name',
                   border: OutlineInputBorder(
@@ -153,8 +210,10 @@ class _Signup_consumerState extends State<Signup_consumer> {
                 ),
               ),
               const SizedBox(height: 20),
+
               // Last Name
               TextFormField(
+                controller: _LastNameController,
                 decoration: InputDecoration(
                   hintText: 'Last Name',
                   border: OutlineInputBorder(
@@ -166,6 +225,7 @@ class _Signup_consumerState extends State<Signup_consumer> {
                 ),
               ),
               const SizedBox(height: 20),
+
               // Email
               TextFormField(
                 controller: _emailController,
@@ -180,6 +240,7 @@ class _Signup_consumerState extends State<Signup_consumer> {
                 ),
               ),
               const SizedBox(height: 20),
+
               // Password
               TextFormField(
                 controller: _passwordController,
@@ -196,6 +257,7 @@ class _Signup_consumerState extends State<Signup_consumer> {
                 ),
               ),
               const SizedBox(height: 20),
+
               // Checkbox
               Row(
                 children: [
@@ -219,15 +281,11 @@ class _Signup_consumerState extends State<Signup_consumer> {
                 ],
               ),
               const SizedBox(height: 40),
+
               // Sign Up Button
               ElevatedButton(
-                onPressed: () async {
-                  final emailString = _emailController.text.trim();
-                  final passswordString = _passwordController.text.trim();
-
-                  await _service.registerCredential(
-                      emailString, passswordString);
-                  Navigator.pushNamed(context, '/verificationConsumer');
+                onPressed: () {
+                  signUp();
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.green,
@@ -246,65 +304,7 @@ class _Signup_consumerState extends State<Signup_consumer> {
                 child: const Text('Sign Up'),
               ),
               const SizedBox(height: 20),
-              // Or sign up with
-              const Text(
-                '---------- Or sign up with---------',
-                style: TextStyle(
-                  color: Colors.grey,
-                ),
-              ),
-              const SizedBox(height: 20),
-              // Social Icons
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  // Facebook Icon
-                  CircleAvatar(
-                    radius: 25,
-                    backgroundColor: Colors.blue,
-                    child: Image.asset(
-                      'Momo_images/Facebook.png',
-                      width: 30,
-                      height: 30,
-                    ),
-                  ),
-                  const SizedBox(width: 20),
-                  // Google Icon
-                  CircleAvatar(
-                    radius: 25,
-                    backgroundColor: Colors.white,
-                    child: Image.asset(
-                      'Momo_images/Google.png',
-                      width: 30,
-                      height: 30,
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text(
-                    'Already have an account?',
-                    style: TextStyle(
-                      color: Colors.grey,
-                    ),
-                  ),
-                  const SizedBox(width: 5),
-                  TextButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/signin_consumer');
-                    },
-                    child: const Text(
-                      'Sign in',
-                      style: TextStyle(
-                        color: Colors.green,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+              // Other UI elements...
             ],
           ),
         ),
