@@ -1,25 +1,3 @@
-// import 'package:flutter/material.dart';
-// import 'package:food/utils/constants.dart';
-
-// class Home extends StatelessWidget {
-//   const Home({Key? key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       body: Center(
-//         child: Container(
-//           child: const Text(
-//             'MOMO',
-//             style: TextStyle(
-//                 color: primaryColor, fontSize: 64),
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
-
 import 'package:flutter/material.dart';
 
 class Home extends StatelessWidget {
@@ -69,7 +47,7 @@ class Home extends StatelessWidget {
                 children: [
                   ElevatedButton(
                     onPressed: () {
-                      Navigator.pushNamed(context, '/user');
+                      Navigator.pushNamed(context, '/admin_login');
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color.fromARGB(255, 245, 245, 245),
@@ -90,7 +68,7 @@ class Home extends StatelessWidget {
               child: Padding(
                 padding: EdgeInsets.all(16.0),
                 child: Text(
-                  'Online Grocery App',
+                  'ADMIN',
                   style: TextStyle(
                     fontSize: 16,
                     color: Colors.black,
