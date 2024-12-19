@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'completeprofileconsumer.dart'; // Make sure to import CompleteProfileConsumer here.
+import 'package:food/main.dart'; // Import to access globalUID
+import 'completeprofileconsumer.dart';
 
 class VerificationConsumer extends StatefulWidget {
-  final String uid;
-
-  const VerificationConsumer({Key? key, required this.uid}) : super(key: key);
+  const VerificationConsumer({super.key});
 
   @override
   State<VerificationConsumer> createState() => _VerificationConsumerState();
@@ -164,8 +163,7 @@ class _VerificationConsumerState extends State<VerificationConsumer> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) =>
-                          CompleteProfileConsumer(uid: widget.uid),
+                      builder: (context) => CompleteProfileConsumer(),
                     ),
                   );
                 },

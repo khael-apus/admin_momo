@@ -11,8 +11,8 @@ class Signup_rider extends StatefulWidget {
 class _Signup_riderState extends State<Signup_rider> {
   bool _agreeToTerms = false;
   final FirebaseAuthService _service = FirebaseAuthService();
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
   void _showTermsAndConditions() {
     showDialog(
@@ -225,7 +225,8 @@ class _Signup_riderState extends State<Signup_rider> {
                   final String emailString = _emailController.text.trim();
                   final String passwordString = _passwordController.text.trim();
 
-                  await _service.registerCredential(emailString, passwordString);
+                  await _service.registerCredential(
+                      emailString, passwordString);
                   Navigator.pushNamed(context, '/verificationRider');
                 },
                 style: ElevatedButton.styleFrom(

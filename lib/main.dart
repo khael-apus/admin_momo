@@ -76,8 +76,8 @@ class MomoApp extends StatelessWidget {
         '/signin_rider': (context) => const Signin_rider(),
         '/signin_consumer': (context) => const Signin_consumer(),
         '/verificationRider': (context) => const VerificationRider(),
-        '/verificationConsumer': (context) => VerificationConsumer(
-            uid: ''), // Placeholder const VerificationConsumer(),
+        '/verificationConsumer': (context) =>
+            const VerificationConsumer(), // Placeholder const VerificationConsumer(),
         '/completeprofileRider': (context) => const CompleteprofileRider(),
         '/riderHome': (context) => const RiderHome(),
         '/listrider': (context) => const Listrider(),
@@ -85,7 +85,7 @@ class MomoApp extends StatelessWidget {
         '/riderprofile': (context) => const Riderprofile(),
         '/orderdetsrider': (context) => const Orderdetsrider(),
         '/completeprofileconsumer': (context) =>
-            CompleteProfileConsumer(uid: ''), // Placeholder
+            const CompleteProfileConsumer(), // Placeholder
         '/editprofilerider': (context) => const Editprofilerider(),
         '/manageaddressrider': (context) => const Manageaddressrider(),
         '/paymentmethodrider': (context) => const Paymentmethodrider(),

@@ -9,8 +9,8 @@ class Signin_consumer extends StatefulWidget {
 }
 
 class _Signin_consumerState extends State<Signin_consumer> {
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
   final FirebaseAuthService _service = FirebaseAuthService();
 
   @override
@@ -93,16 +93,18 @@ class _Signin_consumerState extends State<Signin_consumer> {
                   final user = await _service.verifyCredential(
                       emailString, passwordString);
                   user != null
-                      ?{ Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  const ForgotPasswordScreen()))
-                      }: {
-                        ScaffoldMessenger.of(context).showSnackBar(
+                      ? {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const ForgotPasswordScreen()))
+                        }
+                      : {
+                          ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
-                              content: Text('Invalid credentials'),
-                              duration: Duration(
+                              content: const Text('Invalid credentials'),
+                              duration: const Duration(
                                   seconds:
                                       3), // Duration the Snackbar will be shown
                               action: SnackBarAction(
@@ -113,7 +115,7 @@ class _Signin_consumerState extends State<Signin_consumer> {
                               ),
                             ),
                           )
-                      };
+                        };
                 },
                 child: const Text(
                   'Forgot Password?',

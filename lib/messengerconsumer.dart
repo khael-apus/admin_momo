@@ -5,6 +5,8 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -14,7 +16,8 @@ class MyApp extends StatelessWidget {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => Messengerconsumer()),
+                MaterialPageRoute(
+                    builder: (context) => const Messengerconsumer()),
               );
             },
             child: const Text('Open Momo Chat'),

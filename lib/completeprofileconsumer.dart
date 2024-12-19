@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
+import 'firebase/firebase_auth_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class CompleteProfileConsumer extends StatefulWidget {
-  final String uid;
-
-  const CompleteProfileConsumer({Key? key, required this.uid})
-      : super(key: key);
+  const CompleteProfileConsumer({super.key});
 
   @override
   _CompleteProfileConsumerState createState() =>
@@ -14,8 +12,8 @@ class CompleteProfileConsumer extends StatefulWidget {
 
 class _CompleteProfileConsumerState extends State<CompleteProfileConsumer> {
   String _selectedGender = 'Male';
-  TextEditingController _usernameController = TextEditingController();
-  TextEditingController _mobileNumberController = TextEditingController();
+  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _mobileNumberController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -174,7 +172,7 @@ class _CompleteProfileConsumerState extends State<CompleteProfileConsumer> {
 
                   await FirebaseFirestore.instance
                       .collection('Consumer')
-                      .doc(widget.uid)
+                      .doc(globalUID)
                       .update({
                     'User Name': usernameString,
                     'Mobile Number': mobileNumberString,

@@ -12,10 +12,10 @@ class SignupConsumer extends StatefulWidget {
 
 class _SignupConsumerState extends State<SignupConsumer> {
   bool _agreeToTerms = false;
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
-  TextEditingController _LastNameController = TextEditingController();
-  TextEditingController _FirstNameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _LastNameController = TextEditingController();
+  final TextEditingController _FirstNameController = TextEditingController();
   final FirebaseAuthService _service = FirebaseAuthService();
 
   void _showTermsAndConditions() {
@@ -143,7 +143,7 @@ class _SignupConsumerState extends State<SignupConsumer> {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => VerificationConsumer(uid: uid), 
+          builder: (context) => VerificationConsumer(),
         ),
       );
     } catch (e) {

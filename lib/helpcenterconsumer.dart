@@ -84,7 +84,7 @@ class _HelpcenterconsumerState extends State<Helpcenterconsumer>
           Expanded(
             child: TabBarView(
               controller: _tabController,
-              children: [
+              children: const [
                 FAQTabContent(),
                 ContactUsTabContent(),
               ],

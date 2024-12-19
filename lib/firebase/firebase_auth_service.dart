@@ -1,6 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+// Declare globalUID (Make sure this is in your main.dart or an appropriate global scope)
+String? globalUID;
+
 class FirebaseAuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
@@ -24,13 +27,15 @@ class FirebaseAuthService {
           'uid': user.uid,
           'createdAt': FieldValue.serverTimestamp(),
         });
+
+        // Set the global UID after successful registration
+        globalUID = user.uid;
       }
 
-      // Return the UserCredential
-      return userCredential; // Ensure you return this
+      return userCredential;
     } catch (e) {
       print("Error during registration: $e");
-      rethrow; // Re-throw the exception to handle it in the calling code
+      rethrow;
     }
   }
 
@@ -42,6 +47,12 @@ class FirebaseAuthService {
         email: email,
         password: password,
       );
+
+      // Set the global UID after successful login
+      if (userCredential.user != null) {
+        globalUID = userCredential.user!.uid;
+      }
+
       return userCredential;
     } catch (e) {
       print('Error logging in user: $e');

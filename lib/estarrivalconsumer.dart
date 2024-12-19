@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Estarrivalconsumer extends StatelessWidget {
-  const Estarrivalconsumer({Key? key}) : super(key: key);
+  const Estarrivalconsumer({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -49,14 +49,14 @@ class Estarrivalconsumer extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
           ),
-          Text(
+          const Text(
             "Your grocery will be delivered at ",
             style: TextStyle(
               fontSize: 14,
               color: Colors.grey,
             ),
           ),
-          Text(
+          const Text(
             " your preferred time and date.",
             style: TextStyle(
               fontSize: 14,
@@ -74,15 +74,15 @@ class Estarrivalconsumer extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(horizontal: 16.0),
                     child: Row(
                       children: [
-                        CircleAvatar(
+                        const CircleAvatar(
                           backgroundImage: AssetImage(
                               'assets/images/rider_avatar.png'), // Replace with your image path
                           radius: 24,
                         ),
                         const SizedBox(width: 8),
-                        Column(
+                        const Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: const [
+                          children: [
                             Text(
                               "YOUR RIDER",
                               style: TextStyle(
@@ -111,11 +111,11 @@ class Estarrivalconsumer extends StatelessWidget {
                   ),
                   const SizedBox(height: 16),
                   // Order From Section
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 16.0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
+                      children: [
                         Text(
                           "ORDER FROM",
                           style: TextStyle(fontSize: 16, color: Colors.grey),
@@ -152,10 +152,10 @@ class Estarrivalconsumer extends StatelessWidget {
                               fit: BoxFit.cover,
                             ),
                             const SizedBox(width: 16),
-                            Expanded(
+                            const Expanded(
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                children: const [
+                                children: [
                                   Text(
                                     "Fresh Eggs",
                                     style: TextStyle(
@@ -181,11 +181,11 @@ class Estarrivalconsumer extends StatelessWidget {
                     ),
                   const SizedBox(height: 16),
                   // Payment Summary Section
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 16.0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
+                      children: [
                         Text(
                           "Merchandise Estimated Subtotal: P 300.00",
                           style: TextStyle(fontSize: 16),
@@ -211,9 +211,9 @@ class Estarrivalconsumer extends StatelessWidget {
                   ),
                   const SizedBox(height: 16),
                   // Note Section
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                    child: const Center(
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 16.0),
+                    child: Center(
                       child: Text(
                         "Note:",
                         style: TextStyle(
@@ -224,9 +224,9 @@ class Estarrivalconsumer extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 8),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                    child: const Text(
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 16.0),
+                    child: Text(
                       "Due to the estimated nature of the prices, discrepancies may occur, resulting in either underpayment or overpayment. Underpayments will be collected by the delivery rider, while overpayments will be refunded accordingly.",
                       style: TextStyle(
                         fontSize: 16,

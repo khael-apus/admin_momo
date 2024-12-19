@@ -9,8 +9,8 @@ class Signin_rider extends StatefulWidget {
 }
 
 class _Signin_riderState extends State<Signin_rider> {
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
   final FirebaseAuthService _service = FirebaseAuthService();
 
   @override
@@ -114,8 +114,8 @@ class _Signin_riderState extends State<Signin_rider> {
                       : {
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
-                              content: Text('Invalid credentials'),
-                              duration: Duration(
+                              content: const Text('Invalid credentials'),
+                              duration: const Duration(
                                   seconds:
                                       3), // Duration the Snackbar will be shown
                               action: SnackBarAction(

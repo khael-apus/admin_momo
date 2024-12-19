@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Redirectingtogcash extends StatelessWidget {
-  const Redirectingtogcash({Key? key}) : super(key: key);
+  const Redirectingtogcash({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,7 @@ class Redirectingtogcash extends StatelessWidget {
                         300, // Increased the height to make the picture bigger
                   ),
                 ),
-                SizedBox(height: 10), // Space between the image and dots
+                const SizedBox(height: 10), // Space between the image and dots
                 Row(
                   mainAxisAlignment:
                       MainAxisAlignment.center, // Center the dots
@@ -41,7 +41,7 @@ class Redirectingtogcash extends StatelessWidget {
                       child: Container(
                         width: 10,
                         height: 10,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           color: Colors.blue,
                           shape: BoxShape.circle,
                         ),

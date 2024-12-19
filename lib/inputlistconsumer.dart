@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'firebase/firebase_auth_service.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Inputlistconsumer extends StatefulWidget {
+  // Remove the uid parameter
   const Inputlistconsumer({super.key});
 
   @override
@@ -28,15 +30,36 @@ class _InputlistconsumerState extends State<Inputlistconsumer> {
     final itemSpecialInstructionsString =
         _itemSpecialInstructionsController.text.trim();
 
-    // await FirebaseFirestore.instance.collection('Consumer').doc(uid).collection('List').doc(lid).set({
-    //    'Title': titleString,
-    //    'createdAt': Timestamp.now(),
-    //  },
-    // );
+    // Generate a new document ID for the 'List' collection
+    final lid = FirebaseFirestore.instance.collection('List').doc().id;
+
+    if (globalUID != null) {
+      await FirebaseFirestore.instance
+          .collection('Consumer')
+          .doc(globalUID!) // Use globalUID
+          .collection('List')
+          .doc(lid)
+          .set({
+        'Title': titleString,
+        'createdAt': Timestamp.now(),
+      });
+    } else {
+      // Handle the case where globalUID is null (user not logged in)
+      print("Error: User not logged in (globalUID is null)");
+
+      // Option 1: Show a snackbar or dialog
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("You need to log in first.")),
+      );
+
+      // Option 2: Navigate to the login screen
+      Navigator.pushNamed(context, '/signin_consumer');
+    }
+    ;
   }
 
-  List<Map<String, dynamic>> _items = []; // Use dynamic to store images
-  Map<String, XFile?> _itemImages = {}; // Store images for each item
+  final List<Map<String, dynamic>> _items = []; // Use dynamic to store images
+  final Map<String, XFile?> _itemImages = {}; // Store images for each item
 
   bool _isTitleEditable = false;
   bool _isEditing = false; // Flag for editing mode
@@ -83,7 +106,7 @@ class _InputlistconsumerState extends State<Inputlistconsumer> {
                 context: context,
                 builder: (BuildContext context) {
                   return AlertDialog(
-                    title: Text('Save Your List'),
+                    title: const Text('Save Your List'),
                     content: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
@@ -99,7 +122,7 @@ class _InputlistconsumerState extends State<Inputlistconsumer> {
                           controller: _titleController,
                           decoration: InputDecoration(
                             hintText: _titleController.text.trim(),
-                            border: OutlineInputBorder(),
+                            border: const OutlineInputBorder(),
                           ),
                         ),
                         const Text(
@@ -111,11 +134,11 @@ class _InputlistconsumerState extends State<Inputlistconsumer> {
                         ),
                         const SizedBox(height: 10),
                         DropdownButtonFormField(
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             labelText: '',
                             border: OutlineInputBorder(),
                           ),
-                          items: [
+                          items: const [
                             DropdownMenuItem(child: Text('Unclassified')),
                           ],
                           onChanged: (value) {},
@@ -127,21 +150,21 @@ class _InputlistconsumerState extends State<Inputlistconsumer> {
                               onPressed: () {
                                 Navigator.pop(context);
                               },
-                              child: Text('Cancel'),
+                              child: const Text('Cancel'),
                             ),
                             ElevatedButton(
                               onPressed: () {
                                 saveDetails();
                                 Navigator.pop(context);
                               },
-                              child: Text('Save'),
+                              child: const Text('Save'),
                             ),
                             ElevatedButton(
                               onPressed: () {
                                 Navigator.pushNamed(
                                     context, '/orderlistrequestconsumer');
                               },
-                              child: Text('Save & Order'),
+                              child: const Text('Save & Order'),
                             ),
                           ],
                         ),
@@ -498,8 +521,8 @@ class OrderCard extends StatelessWidget {
     required this.specialInstructions,
     required this.imagePicker,
     required this.onTap,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

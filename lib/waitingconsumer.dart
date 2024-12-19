@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:food/estarrivalconsumer.dart';
 
 class Waitingconsumer extends StatefulWidget {
-  const Waitingconsumer({Key? key}) : super(key: key);
+  const Waitingconsumer({super.key});
 
   @override
   State<Waitingconsumer> createState() => _WaitingconsumerState();
@@ -78,15 +78,15 @@ class _WaitingconsumerState extends State<Waitingconsumer> {
                     padding: const EdgeInsets.symmetric(horizontal: 16.0),
                     child: Row(
                       children: [
-                        CircleAvatar(
+                        const CircleAvatar(
                           backgroundImage: AssetImage(
                               'assets/images/rider_avatar.png'), // Replace with your image path
                           radius: 24,
                         ),
                         const SizedBox(width: 8),
-                        Column(
+                        const Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: const [
+                          children: [
                             Text(
                               "YOUR RIDER",
                               style: TextStyle(
@@ -115,11 +115,11 @@ class _WaitingconsumerState extends State<Waitingconsumer> {
                   ),
                   const SizedBox(height: 16),
                   // Order From Section
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 16.0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
+                      children: [
                         Text(
                           "ORDER FROM",
                           style: TextStyle(fontSize: 16, color: Colors.grey),
@@ -156,10 +156,10 @@ class _WaitingconsumerState extends State<Waitingconsumer> {
                               fit: BoxFit.cover,
                             ),
                             const SizedBox(width: 16),
-                            Expanded(
+                            const Expanded(
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                children: const [
+                                children: [
                                   Text(
                                     "Fresh Eggs",
                                     style: TextStyle(
@@ -185,11 +185,11 @@ class _WaitingconsumerState extends State<Waitingconsumer> {
                     ),
                   const SizedBox(height: 16),
                   // Payment Summary Section
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 16.0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
+                      children: [
                         Text(
                           "Merchandise Estimated Subtotal: P 300.00",
                           style: TextStyle(fontSize: 16),
@@ -215,9 +215,9 @@ class _WaitingconsumerState extends State<Waitingconsumer> {
                   ),
                   const SizedBox(height: 16),
                   // Note Section
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                    child: const Center(
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 16.0),
+                    child: Center(
                       child: Text(
                         "Note:",
                         style: TextStyle(
@@ -228,9 +228,9 @@ class _WaitingconsumerState extends State<Waitingconsumer> {
                     ),
                   ),
                   const SizedBox(height: 8),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                    child: const Text(
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 16.0),
+                    child: Text(
                       "Due to the estimated nature of the prices, discrepancies may occur, resulting in either underpayment or overpayment. Underpayments will be collected by the delivery rider, while overpayments will be refunded accordingly.",
                       style: TextStyle(
                         fontSize: 16,
