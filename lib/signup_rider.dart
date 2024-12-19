@@ -192,9 +192,19 @@ class _Signup_riderState extends State<Signup_rider> {
                   ),
                   filled: true,
                   fillColor: Colors.grey[200],
-                  suffixIcon: const Icon(Icons.visibility_off),
+                  suffixIcon: Padding(
+                    padding:
+                        const EdgeInsets.all(8.0), // Adjust padding as needed
+                    child: Image.asset(
+                      'Momo_images/Invisible.png',
+                      width: 30,
+                      height: 30,
+                    ),
+                  ),
                 ),
               ),
+              const SizedBox(height: 20),
+
               const SizedBox(height: 20),
               // Checkbox
               Row(
@@ -225,7 +235,8 @@ class _Signup_riderState extends State<Signup_rider> {
                   final String emailString = _emailController.text.trim();
                   final String passwordString = _passwordController.text.trim();
 
-                  await _service.registerCredential(emailString, passwordString);
+                  await _service.registerCredential(
+                      emailString, passwordString);
                   Navigator.pushNamed(context, '/verificationRider');
                 },
                 style: ElevatedButton.styleFrom(

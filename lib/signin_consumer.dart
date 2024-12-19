@@ -80,7 +80,15 @@ class _Signin_consumerState extends State<Signin_consumer> {
                   ),
                   filled: true,
                   fillColor: Colors.grey[200],
-                  suffixIcon: const Icon(Icons.visibility_off),
+                  suffixIcon: Padding(
+                    padding:
+                        const EdgeInsets.all(8.0), // Adjust padding as needed
+                    child: Image.asset(
+                      'Momo_images/Invisible.png',
+                      width: 30,
+                      height: 30,
+                    ),
+                  ),
                 ),
               ),
               const SizedBox(height: 20),
@@ -93,13 +101,15 @@ class _Signin_consumerState extends State<Signin_consumer> {
                   final user = await _service.verifyCredential(
                       emailString, passwordString);
                   user != null
-                      ?{ Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  const ForgotPasswordScreen()))
-                      }: {
-                        ScaffoldMessenger.of(context).showSnackBar(
+                      ? {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const ForgotPasswordScreen()))
+                        }
+                      : {
+                          ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
                               content: Text('Invalid credentials'),
                               duration: Duration(
@@ -113,7 +123,7 @@ class _Signin_consumerState extends State<Signin_consumer> {
                               ),
                             ),
                           )
-                      };
+                        };
                 },
                 child: const Text(
                   'Forgot Password?',
