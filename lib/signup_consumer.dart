@@ -143,7 +143,7 @@ class _SignupConsumerState extends State<SignupConsumer> {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => VerificationConsumer(uid: uid), 
+          builder: (context) => VerificationConsumer(uid: uid),
         ),
       );
     } catch (e) {
@@ -304,7 +304,64 @@ class _SignupConsumerState extends State<SignupConsumer> {
                 child: const Text('Sign Up'),
               ),
               const SizedBox(height: 20),
-              // Other UI elements...
+              const Text(
+                '---------- Or sign up with---------',
+                style: TextStyle(
+                  color: Colors.grey,
+                ),
+              ),
+              const SizedBox(height: 20),
+              // Social Icons
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  // Facebook Icon
+                  CircleAvatar(
+                    radius: 25,
+                    backgroundColor: Colors.blue,
+                    child: Image.asset(
+                      'Momo_images/Facebook.png',
+                      width: 30,
+                      height: 30,
+                    ),
+                  ),
+                  const SizedBox(width: 20),
+                  // Google Icon
+                  CircleAvatar(
+                    radius: 25,
+                    backgroundColor: Colors.white,
+                    child: Image.asset(
+                      'Momo_images/Google.png',
+                      width: 30,
+                      height: 30,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text(
+                    'Already have an account?',
+                    style: TextStyle(
+                      color: Colors.grey,
+                    ),
+                  ),
+                  const SizedBox(width: 5),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/signin_consumer');
+                    },
+                    child: const Text(
+                      'Sign in',
+                      style: TextStyle(
+                        color: Colors.green,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ],
           ),
         ),
