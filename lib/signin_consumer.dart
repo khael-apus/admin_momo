@@ -80,7 +80,15 @@ class _Signin_consumerState extends State<Signin_consumer> {
                   ),
                   filled: true,
                   fillColor: Colors.grey[200],
-                  suffixIcon: const Icon(Icons.visibility_off),
+                  suffixIcon: Padding(
+                    padding:
+                        const EdgeInsets.all(8.0), // Adjust padding as needed
+                    child: Image.asset(
+                      'Momo_images/Invisible.png',
+                      width: 30,
+                      height: 30,
+                    ),
+                  ),
                 ),
               ),
               const SizedBox(height: 20),
