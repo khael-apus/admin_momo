@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Canceled_orders extends StatefulWidget {
-  const Canceled_orders({Key? key}) : super(key: key);
+  const Canceled_orders({super.key});
 
   @override
   State<Canceled_orders> createState() => _Canceled_ordersState();

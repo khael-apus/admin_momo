@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Admin_login extends StatefulWidget {
-  const Admin_login({Key? key}) : super(key: key);
+  const Admin_login({super.key});
 
   @override
   State<Admin_login> createState() => _AdminLoginState();
@@ -44,9 +44,9 @@ class _AdminLoginState extends State<Admin_login> {
                   ],
                 ),
                 const SizedBox(height: 10),
-                Row(
+                const Row(
                   mainAxisAlignment: MainAxisAlignment.end,
-                  children: const [
+                  children: [
                     CircleAvatar(
                       radius: 30,
                       backgroundColor: Color.fromARGB(255, 27, 145, 125),

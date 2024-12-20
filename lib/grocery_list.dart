@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Grocery_list extends StatefulWidget {
-  const Grocery_list({Key? key}) : super(key: key);
+  const Grocery_list({super.key});
 
   @override
   State<Grocery_list> createState() => _Grocery_listState();

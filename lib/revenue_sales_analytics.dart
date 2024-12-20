@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Revenue_sales_analytics extends StatefulWidget {
-  const Revenue_sales_analytics({Key? key}) : super(key: key);
+  const Revenue_sales_analytics({super.key});
 
   @override
   State<Revenue_sales_analytics> createState() =>

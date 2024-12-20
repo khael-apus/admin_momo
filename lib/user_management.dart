@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class User_management extends StatefulWidget {
-  const User_management({Key? key}) : super(key: key);
+  const User_management({super.key});
 
   @override
   State<User_management> createState() => _User_managementState();

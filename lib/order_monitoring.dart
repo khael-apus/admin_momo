@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Order_monitoring extends StatefulWidget {
-  const Order_monitoring({Key? key}) : super(key: key);
+  const Order_monitoring({super.key});
 
   @override
   State<Order_monitoring> createState() => _Order_monitoringState();

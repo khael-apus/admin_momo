@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Adminhome extends StatefulWidget {
-  const Adminhome({Key? key}) : super(key: key);
+  const Adminhome({super.key});
 
   @override
   State<Adminhome> createState() => _AdminHomeState();

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Order_history extends StatefulWidget {
-  const Order_history({Key? key}) : super(key: key);
+  const Order_history({super.key});
 
   @override
   State<Order_history> createState() => _Order_historyState();
