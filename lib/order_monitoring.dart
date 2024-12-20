@@ -7,22 +7,7 @@ class Order_monitoring extends StatefulWidget {
   State<Order_monitoring> createState() => _Order_monitoringState();
 }
 
-class _Order_monitoringState extends State<Order_monitoring>
-    with SingleTickerProviderStateMixin {
-  late TabController _tabController;
-
-  @override
-  void initState() {
-    super.initState();
-    _tabController = TabController(length: 1, vsync: this);
-  }
-
-  @override
-  void dispose() {
-    _tabController.dispose();
-    super.dispose();
-  }
-
+class _Order_monitoringState extends State<Order_monitoring> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,62 +34,105 @@ class _Order_monitoringState extends State<Order_monitoring>
         ),
         centerTitle: true,
       ),
-      body: TabBarView(
-        controller: _tabController,
-        children: [
-          SingleChildScrollView(
-            child: Column(
-              children: const [
-                OrderCard(
-                  orderNumber: '123456',
-                  date: '25 - May - 2024, 1:00 PM',
-                  estimatedDelivery: 'Est. Delivery on 28, May',
-                  items: '4 items',
-                  price: '1165.00',
-                  imagePath: 'Momo_images/egg.png',
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            // Search and Filter Row
+            Row(
+              children: [
+                Expanded(
+                  flex: 3,
+                  child: TextField(
+                    decoration: InputDecoration(
+                      hintText: 'Order ID',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      contentPadding: const EdgeInsets.symmetric(
+                        horizontal: 16,
+                        vertical: 8,
+                      ),
+                    ),
+                  ),
                 ),
-                OrderCard(
-                  orderNumber: '789012',
-                  date: '27 - May - 2024, 3:00 PM',
-                  estimatedDelivery: 'Est. Delivery on 30, May',
-                  items: '2 items',
-                  price: '550.00',
-                  imagePath: 'Momo_images/nestle.png',
+                const SizedBox(width: 8),
+                Expanded(
+                  flex: 3,
+                  child: TextField(
+                    decoration: InputDecoration(
+                      hintText: 'Status',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      contentPadding: const EdgeInsets.symmetric(
+                        horizontal: 16,
+                        vertical: 8,
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 8),
+                Expanded(
+                  flex: 2,
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFF36D498),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                    ),
+                    child: const Text('Search'),
+                  ),
                 ),
               ],
             ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildDashboardCard({
-    required Widget child,
-    required String label,
-    required String routeName,
-  }) {
-    return Card(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10.0),
-      ),
-      color: const Color.fromARGB(255, 54, 212, 152),
-      child: InkWell(
-        onTap: () {
-          Navigator.pushNamed(context, routeName);
-        },
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            child,
-            const SizedBox(height: 10),
-            Text(
-              label,
-              textAlign: TextAlign.center,
-              style: const TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-                fontSize: 16,
+            const SizedBox(height: 16),
+            // Table Headers
+            Container(
+              color: const Color(0xFFE6E6E6),
+              padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+              child: Row(
+                children: const [
+                  Expanded(
+                      flex: 2,
+                      child: Text('Order No.',
+                          style: TextStyle(fontWeight: FontWeight.bold))),
+                  Expanded(
+                      flex: 2,
+                      child: Text('Status',
+                          style: TextStyle(fontWeight: FontWeight.bold))),
+                  Expanded(
+                      flex: 2,
+                      child: Text('Service',
+                          style: TextStyle(fontWeight: FontWeight.bold))),
+                  Expanded(
+                      flex: 3,
+                      child: Text('Tracking Code',
+                          style: TextStyle(fontWeight: FontWeight.bold))),
+                ],
+              ),
+            ),
+            const Divider(height: 0, thickness: 1),
+            // Table Rows
+            Expanded(
+              child: ListView(
+                children: [
+                  _buildTableRow(
+                    orderNo: '12345',
+                    status: 'New Order',
+                    service: 'Priority',
+                    trackingCode: '772979467',
+                  ),
+                  const Divider(height: 0, thickness: 1),
+                  _buildTableRow(
+                    orderNo: '23467',
+                    status: 'Cancelled',
+                    service: 'Standard',
+                    trackingCode: '772979466',
+                  ),
+                ],
               ),
             ),
           ],
@@ -112,49 +140,22 @@ class _Order_monitoringState extends State<Order_monitoring>
       ),
     );
   }
-}
 
-// Ensure you define the OrderCard widget.
-class OrderCard extends StatelessWidget {
-  final String orderNumber;
-  final String date;
-  final String estimatedDelivery;
-  final String items;
-  final String price;
-  final String imagePath;
-
-  const OrderCard({
-    super.key,
-    required this.orderNumber,
-    required this.date,
-    required this.estimatedDelivery,
-    required this.items,
-    required this.price,
-    required this.imagePath,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      margin: const EdgeInsets.all(10),
-      child: ListTile(
-        leading: Image.asset(imagePath, width: 50, height: 50),
-        title: Text('Order #$orderNumber'),
-        subtitle: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text('Date: $date'),
-            Text('Delivery: $estimatedDelivery'),
-            Text('Items: $items'),
-          ],
-        ),
-        trailing: Text(
-          '₱$price',
-          style: const TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 16,
-          ),
-        ),
+  Widget _buildTableRow({
+    required String orderNo,
+    required String status,
+    required String service,
+    required String trackingCode,
+  }) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+      child: Row(
+        children: [
+          Expanded(flex: 2, child: Text(orderNo)),
+          Expanded(flex: 2, child: Text(status)),
+          Expanded(flex: 2, child: Text(service)),
+          Expanded(flex: 3, child: Text(trackingCode)),
+        ],
       ),
     );
   }
