@@ -7,7 +7,23 @@ class Grocery_list extends StatefulWidget {
   State<Grocery_list> createState() => _Grocery_listState();
 }
 
-class _Grocery_listState extends State<Grocery_list> {
+class _Grocery_listState extends State<Grocery_list>
+    with SingleTickerProviderStateMixin {
+  late TabController _tabController;
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController =
+        TabController(length: 2, vsync: this); // Initialize TabController
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose(); // Dispose TabController to free resources
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,66 +48,73 @@ class _Grocery_listState extends State<Grocery_list> {
             fontWeight: FontWeight.bold,
           ),
         ),
-        centerTitle: true,
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        selectedItemColor: const Color.fromARGB(255, 27, 145, 125),
-        unselectedItemColor: Colors.grey,
-        showSelectedLabels: true,
-        showUnselectedLabels: true,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Dashboard',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.list),
-            label: 'Grocery List',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.directions_bike),
-            label: 'Riders List',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.people),
-            label: 'User List',
+      body: TabBarView(
+        controller: _tabController,
+        children: [
+          SingleChildScrollView(
+            child: Column(
+              children: const [
+                OrderCard(
+                  orderNumber: '123456',
+                  date: '25 - May - 2024, 1:00 PM',
+                  estimatedDelivery: 'Est. Delivery on 28, May',
+                  items: '4 items',
+                  price: '1165.00',
+                  imagePath: 'Momo_images/egg.png',
+                ),
+                OrderCard(
+                  orderNumber: '789012',
+                  date: '27 - May - 2024, 3:00 PM',
+                  estimatedDelivery: 'Est. Delivery on 30, May',
+                  items: '2 items',
+                  price: '550.00',
+                  imagePath: 'Momo_images/nestle.png',
+                ),
+              ],
+            ),
           ),
         ],
       ),
     );
   }
+}
 
-  Widget _buildDashboardCard({
-    required Widget child,
-    required String label,
-    required String routeName, // New parameter for route name
-  }) {
+// Placeholder for OrderCard Widget
+class OrderCard extends StatelessWidget {
+  final String orderNumber;
+  final String date;
+  final String estimatedDelivery;
+  final String items;
+  final String price;
+  final String imagePath;
+
+  const OrderCard({
+    required this.orderNumber,
+    required this.date,
+    required this.estimatedDelivery,
+    required this.items,
+    required this.price,
+    required this.imagePath,
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
     return Card(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10.0),
-      ),
-      color: const Color.fromARGB(255, 54, 212, 152),
-      child: InkWell(
-        onTap: () {
-          Navigator.pushNamed(
-              context, routeName); // Navigate to the specified route
-        },
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+      margin: const EdgeInsets.all(8.0),
+      child: ListTile(
+        leading: Image.asset(imagePath, width: 50, height: 50),
+        title: Text('Order #$orderNumber'),
+        subtitle: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            child,
-            const SizedBox(height: 10),
-            Text(
-              label,
-              textAlign: TextAlign.center,
-              style: const TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-                fontSize: 16,
-              ),
-            ),
+            Text(date),
+            Text(estimatedDelivery),
+            Text(items),
           ],
         ),
+        trailing: Text('₱$price'),
       ),
     );
   }

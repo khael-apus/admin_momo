@@ -8,6 +8,8 @@ class Adminhome extends StatefulWidget {
 }
 
 class _AdminHomeState extends State<Adminhome> {
+  bool _isMenuOpen = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +23,9 @@ class _AdminHomeState extends State<Adminhome> {
             height: 30,
           ),
           onPressed: () {
-            // Add menu functionality here
+            setState(() {
+              _isMenuOpen = !_isMenuOpen;
+            });
           },
         ),
         title: const Text(
@@ -46,87 +50,111 @@ class _AdminHomeState extends State<Adminhome> {
           ),
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: GridView.count(
-          crossAxisCount: 2,
-          crossAxisSpacing: 16,
-          mainAxisSpacing: 16,
-          children: [
-            _buildDashboardCard(
-              child: Image.asset(
-                'Momo_images/Maki_grocery.png',
-                width: 60,
-                height: 60,
-              ),
-              label: 'Grocery List',
-              routeName: '/grocery_list', // Example route
+      body: Stack(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: GridView.count(
+              crossAxisCount: 2,
+              crossAxisSpacing: 16,
+              mainAxisSpacing: 16,
+              children: [
+                _buildDashboardCard(
+                  child: Image.asset(
+                    'Momo_images/Maki_grocery.png',
+                    width: 60,
+                    height: 60,
+                  ),
+                  label: 'Grocery List',
+                  routeName: '/grocery_list', // Example route
+                ),
+                _buildDashboardCard(
+                  child: Image.asset(
+                      'Momo_images/material-symbols_cancel-rounded.png',
+                      width: 60,
+                      height: 60),
+                  label: 'Canceled Orders',
+                  routeName: '/canceled_orders', // Example route
+                ),
+                _buildDashboardCard(
+                  child: Image.asset(
+                    'Momo_images/iconamoon_history-bold.png',
+                    width: 60,
+                    height: 60,
+                  ),
+                  label: 'Order History & Reports',
+                  routeName: '/order_history', // Example route
+                ),
+                _buildDashboardCard(
+                  child: Image.asset(
+                    'Momo_images/vec.png',
+                    width: 60,
+                    height: 60,
+                  ),
+                  label: 'User  Management',
+                  routeName: '/user_management', // Example route
+                ),
+                _buildDashboardCard(
+                  child: Image.asset(
+                    'Momo_images/material-symbols_map.png',
+                    width: 60,
+                    height: 60,
+                  ),
+                  label: 'Order Monitoring',
+                  routeName: '/order_monitoring', // Example route
+                ),
+                _buildDashboardCard(
+                  child: Image.asset(
+                    'Momo_images/stash_paperplane-solid.png',
+                    width: 60,
+                    height: 60,
+                  ),
+                  label: 'Notifications & Alerts',
+                  routeName: '/notifications_alerts', // Example route
+                ),
+                _buildDashboardCard(
+                  child: Image.asset(
+                    'Momo_images/eos-icons_admin.png',
+                    width: 60,
+                    height: 60,
+                  ),
+                  label: 'Admin Settings',
+                  routeName: '/admin_settings', // Example route
+                ),
+                _buildDashboardCard(
+                  child: Image.asset(
+                    'Momo_images/mdi_google-analytics.png',
+                    width: 60,
+                    height: 60,
+                  ),
+                  label: 'Revenue & Sales Analytics',
+                  routeName: '/revenue_sales_analytics', // Example route
+                ),
+              ],
             ),
-            _buildDashboardCard(
-              child: Image.asset(
-                'Momo_images/material-symbols_cancel-rounded.png',
-                width: 60,
-                height: 60,
+          ),
+          if (_isMenuOpen)
+            Container(
+              color: const Color.fromARGB(255, 54, 212, 152),
+              width: MediaQuery.of(context).size.width * 0.75,
+              child: Column(
+                children: [
+                  // Add more menu items as needed
+                  Spacer(), // Pushes the logout button to the bottom
+                  ListTile(
+                    leading: Image.asset(
+                      'Momo_images/logout.png',
+                      width: 80,
+                      height: 80,
+                    ),
+                    onTap: () {
+                      // Handle logout functionality here
+                    },
+                  ),
+                ],
               ),
-              label: 'Canceled Orders',
-              routeName: '/canceled_orders', // Example route
             ),
-            _buildDashboardCard(
-              child: Image.asset(
-                'Momo_images/iconamoon_history-bold.png',
-                width: 60,
-                height: 60,
-              ),
-              label: 'Order History & Reports',
-              routeName: '/order_history', // Example route
-            ),
-            _buildDashboardCard(
-              child: Image.asset(
-                'Momo_images/vec.png',
-                width: 60,
-                height: 60,
-              ),
-              label: 'User Management',
-              routeName: '/user_management', // Example route
-            ),
-            _buildDashboardCard(
-              child: Image.asset(
-                'Momo_images/material-symbols_map.png',
-                width: 60,
-                height: 60,
-              ),
-              label: 'Order Monitoring',
-              routeName: '/order_monitoring', // Example route
-            ),
-            _buildDashboardCard(
-              child: Image.asset(
-                'Momo_images/stash_paperplane-solid.png',
-                width: 60,
-                height: 60,
-              ),
-              label: 'Notifications & Alerts',
-              routeName: '/notifications_alerts', // Example route
-            ),
-            _buildDashboardCard(
-              child: Image.asset(
-                'Momo_images/eos-icons_admin.png',
-                width: 60,
-                height: 60,
-              ),
-              label: 'Admin Settings',
-              routeName: '/admin_settings', // Example route
-            ),
-            _buildDashboardCard(
-              child: Image.asset(
-                'Momo_images/mdi_google-analytics.png',
-                width: 60,
-                height: 60,
-              ),
-              label: 'Revenue & Sales Analytics',
-              routeName: '/revenue_sales_analytics', // Example route
-            ),
-          ],
-        ),
+        ],
       ),
       bottomNavigationBar: BottomNavigationBar(
         selectedItemColor: const Color.fromARGB(255, 27, 145, 125),
@@ -148,7 +176,7 @@ class _AdminHomeState extends State<Adminhome> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.people),
-            label: 'User List',
+            label: 'User  List',
           ),
         ],
       ),

@@ -10,6 +10,8 @@ import 'package:food/order_monitoring.dart';
 import 'package:food/notifications_alerts.dart';
 import 'package:food/admin_settings.dart';
 import 'package:food/revenue_sales_analytics.dart';
+import 'package:food/rider.dart';
+import 'package:food/consumer.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -38,6 +40,8 @@ class MomoApp extends StatelessWidget {
         '/admin_settings': (context) => const Admin_settings(),
         '/revenue_sales_analytics': (context) =>
             const Revenue_sales_analytics(),
+        '/rider': (context) => const Rider(),
+        '/consumer': (context) => const Consumer(),
       },
     );
   }

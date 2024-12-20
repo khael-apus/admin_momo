@@ -34,29 +34,33 @@ class _User_managementState extends State<User_management> {
         ),
         centerTitle: true,
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        selectedItemColor: const Color.fromARGB(255, 27, 145, 125),
-        unselectedItemColor: Colors.grey,
-        showSelectedLabels: true,
-        showUnselectedLabels: true,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Dashboard',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.list),
-            label: 'Grocery List',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.directions_bike),
-            label: 'Riders List',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.people),
-            label: 'User List',
-          ),
-        ],
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: GridView.count(
+          crossAxisCount: 2,
+          crossAxisSpacing: 16,
+          mainAxisSpacing: 16,
+          children: [
+            _buildDashboardCard(
+              child: Image.asset(
+                'Momo_images/v.png',
+                width: 60,
+                height: 60,
+              ),
+              label: 'Rider',
+              routeName: '/rider', // Example route
+            ),
+            _buildDashboardCard(
+              child: Image.asset(
+                'Momo_images/c.png',
+                width: 60,
+                height: 60,
+              ),
+              label: 'Consumer',
+              routeName: '/consumer', // Example route
+            ),
+          ],
+        ),
       ),
     );
   }
