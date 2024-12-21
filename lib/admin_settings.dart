@@ -49,62 +49,71 @@ class _Admin_settingsState extends State<Admin_settings>
         ),
         centerTitle: true,
       ),
-      body: TabBarView(
-        controller: _tabController,
-        children: [
-          SingleChildScrollView(
-            child: Column(
-              children: const [
-                OrderCard(
-                  orderNumber: '123456',
-                  date: '25 - May - 2024, 1:00 PM',
-                  estimatedDelivery: 'Est. Delivery on 28, May',
-                  items: '4 items',
-                  price: '1165.00',
-                  imagePath: 'Momo_images/egg.png',
-                ),
-                OrderCard(
-                  orderNumber: '789012',
-                  date: '27 - May - 2024, 3:00 PM',
-                  estimatedDelivery: 'Est. Delivery on 30, May',
-                  items: '2 items',
-                  price: '550.00',
-                  imagePath: 'Momo_images/nestle.png',
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildDashboardCard({
-    required Widget child,
-    required String label,
-    required String routeName,
-  }) {
-    return Card(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10.0),
-      ),
-      color: const Color.fromARGB(255, 54, 212, 152),
-      child: InkWell(
-        onTap: () {
-          Navigator.pushNamed(context, routeName);
-        },
+      body: SingleChildScrollView(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            child,
+            const SizedBox(height: 20),
+            Center(
+              child: Stack(
+                alignment: Alignment.center,
+                children: [
+                  Container(
+                    width: 120,
+                    height: 120,
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.grey,
+                    ),
+                  ),
+                  Image.asset('Momo_images/profile.png', height: 60, width: 60),
+                  Positioned(
+                    bottom: 5,
+                    right: 5,
+                    child: Container(
+                      width: 30,
+                      height: 30,
+                      decoration: const BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Colors.green,
+                      ),
+                      child: const Icon(Icons.camera_alt,
+                          color: Colors.white, size: 18),
+                    ),
+                  ),
+                ],
+              ),
+            ),
             const SizedBox(height: 10),
-            Text(
-              label,
-              textAlign: TextAlign.center,
-              style: const TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-                fontSize: 16,
+            const Center(
+              child: Text(
+                'ADMIN',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            const SizedBox(height: 20),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              child: Column(
+                children: [
+                  buildListTile(
+                    leadingImage: 'Momo_images/User.png',
+                    title: 'Edit Profile',
+                    onTap: () {
+                      Navigator.pushNamed(context, '/editprofilerider');
+                    },
+                  ),
+                  buildListTile(
+                    leadingImage: 'Momo_images/Place Marker.png',
+                    title: 'Manage Address',
+                    onTap: () {
+                      Navigator.pushNamed(context, '/manageaddressrider');
+                    },
+                  ),
+                ],
               ),
             ),
           ],
@@ -112,9 +121,30 @@ class _Admin_settingsState extends State<Admin_settings>
       ),
     );
   }
+
+  Widget buildListTile({
+    required String leadingImage,
+    required String title,
+    required VoidCallback onTap,
+  }) {
+    return ListTile(
+      leading: Image.asset(
+        leadingImage,
+        width: 30,
+        height: 30,
+      ),
+      title: Text(
+        title,
+        style: const TextStyle(
+          fontSize: 16,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+      onTap: onTap,
+    );
+  }
 }
 
-// Ensure you define the OrderCard widget.
 class OrderCard extends StatelessWidget {
   final String orderNumber;
   final String date;
@@ -132,7 +162,7 @@ class OrderCard extends StatelessWidget {
     required this.price,
     required this.imagePath,
   });
-
+ 
   @override
   Widget build(BuildContext context) {
     return Card(

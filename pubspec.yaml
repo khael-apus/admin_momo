@@ -15,6 +15,7 @@ dependencies:
   firebase_auth: ^5.3.1 
   firebase_auth_mocks: ^0.14.1
   cloud_firestore: ^5.4.4
+  syncfusion_flutter_charts: ^28.1.35
 
 dev_dependencies:
   flutter_test:
@@ -87,3 +88,10 @@ flutter:
     - Momo_images/v.png
     - Momo_images/logout.png
     - Momo_images/Search.png
+    - Momo_images/bas.png
+    - Momo_images/mdi_mail.png
+    - Momo_images/c.png
+    - Momo_images/star.png
+    - Momo_images/starnot.png
+    - Momo_images/call.png
+    - Momo_images/mescah.png

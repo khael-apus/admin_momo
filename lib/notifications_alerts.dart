@@ -7,22 +7,7 @@ class Notifications_alerts extends StatefulWidget {
   State<Notifications_alerts> createState() => _Notifications_alertsState();
 }
 
-class _Notifications_alertsState extends State<Notifications_alerts>
-    with SingleTickerProviderStateMixin {
-  late TabController _tabController;
-
-  @override
-  void initState() {
-    super.initState();
-    _tabController = TabController(length: 1, vsync: this);
-  }
-
-  @override
-  void dispose() {
-    _tabController.dispose();
-    super.dispose();
-  }
-
+class _Notifications_alertsState extends State<Notifications_alerts> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,7 +25,7 @@ class _Notifications_alertsState extends State<Notifications_alerts>
           },
         ),
         title: const Text(
-          'Notification & Alerts',
+          'Notifications & Alerts',
           style: TextStyle(
             color: Colors.black,
             fontSize: 22,
@@ -49,112 +34,125 @@ class _Notifications_alertsState extends State<Notifications_alerts>
         ),
         centerTitle: true,
       ),
-      body: TabBarView(
-        controller: _tabController,
-        children: [
-          SingleChildScrollView(
-            child: Column(
-              children: const [
-                OrderCard(
-                  orderNumber: '123456',
-                  date: '25 - May - 2024, 1:00 PM',
-                  estimatedDelivery: 'Est. Delivery on 28, May',
-                  items: '4 items',
-                  price: '1165.00',
-                  imagePath: 'Momo_images/egg.png',
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text(
+                  'Notification Manager',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-                OrderCard(
-                  orderNumber: '789012',
-                  date: '27 - May - 2024, 3:00 PM',
-                  estimatedDelivery: 'Est. Delivery on 30, May',
-                  items: '2 items',
-                  price: '550.00',
-                  imagePath: 'Momo_images/nestle.png',
+                Row(
+                  children: [
+                    IconButton(
+                      onPressed: () {},
+                      icon: Image.asset(
+                        'Momo_images/mdi_mail.png',
+                        width: 24.0, // Adjust size as needed
+                        height: 24.0,
+                      ),
+                    ),
+                    IconButton(
+                      onPressed: () {},
+                      icon: Image.asset(
+                        'Momo_images/bas.png',
+                        width: 24.0, // Adjust size as needed
+                        height: 24.0,
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildDashboardCard({
-    required Widget child,
-    required String label,
-    required String routeName,
-  }) {
-    return Card(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10.0),
-      ),
-      color: const Color.fromARGB(255, 54, 212, 152),
-      child: InkWell(
-        onTap: () {
-          Navigator.pushNamed(context, routeName);
-        },
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            child,
             const SizedBox(height: 10),
-            Text(
-              label,
-              textAlign: TextAlign.center,
-              style: const TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-                fontSize: 16,
+            Container(
+              padding: const EdgeInsets.all(16.0),
+              decoration: BoxDecoration(
+                color: Colors.grey[200],
+                borderRadius: BorderRadius.circular(8.0),
+              ),
+              child: Column(
+                children: [
+                  _buildTextField(label: 'Notification Title'),
+                  const SizedBox(height: 8),
+                  _buildTextField(label: 'Notification Type'),
+                  const SizedBox(height: 8),
+                  _buildTextField(label: 'Notification Status'),
+                  const SizedBox(height: 8),
+                  _buildTextField(label: 'Date Added'),
+                ],
               ),
             ),
+            const SizedBox(height: 20),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Container(
+                    color: const Color.fromARGB(255, 54, 212, 152),
+                    padding: const EdgeInsets.symmetric(vertical: 8.0),
+                    child: const Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Expanded(
+                            child: Text('Notification Title',
+                                style: TextStyle(color: Colors.white),
+                                textAlign: TextAlign.center)),
+                        Expanded(
+                            child: Text('Notification Type',
+                                style: TextStyle(color: Colors.white),
+                                textAlign: TextAlign.center)),
+                        Expanded(
+                            child: Text('Content',
+                                style: TextStyle(color: Colors.white),
+                                textAlign: TextAlign.center)),
+                        Expanded(
+                            child: Text('Status',
+                                style: TextStyle(color: Colors.white),
+                                textAlign: TextAlign.center)),
+                        Expanded(
+                            child: Text('Date',
+                                style: TextStyle(color: Colors.white),
+                                textAlign: TextAlign.center)),
+                      ],
+                    ),
+                  ),
+                  Expanded(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.grey),
+                      ),
+                      child: const Center(
+                        child: Text('No data available'),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            )
           ],
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        backgroundColor: const Color.fromARGB(255, 54, 212, 152),
+        child: const Icon(Icons.add),
+      ),
     );
   }
-}
 
-// Ensure you define the OrderCard widget.
-class OrderCard extends StatelessWidget {
-  final String orderNumber;
-  final String date;
-  final String estimatedDelivery;
-  final String items;
-  final String price;
-  final String imagePath;
-
-  const OrderCard({
-    super.key,
-    required this.orderNumber,
-    required this.date,
-    required this.estimatedDelivery,
-    required this.items,
-    required this.price,
-    required this.imagePath,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      margin: const EdgeInsets.all(10),
-      child: ListTile(
-        leading: Image.asset(imagePath, width: 50, height: 50),
-        title: Text('Order #$orderNumber'),
-        subtitle: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text('Date: $date'),
-            Text('Delivery: $estimatedDelivery'),
-            Text('Items: $items'),
-          ],
-        ),
-        trailing: Text(
-          '₱$price',
-          style: const TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 16,
-          ),
-        ),
+  Widget _buildTextField({required String label}) {
+    return TextField(
+      decoration: InputDecoration(
+        labelText: label,
+        border: const OutlineInputBorder(),
       ),
     );
   }
